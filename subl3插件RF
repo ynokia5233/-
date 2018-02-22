@@ -1,0 +1,183 @@
+机器人框架助手
+
+Robot Framework Assistant提供IDE功能来编辑 Sublime Text 3中的Robot Framework测试数据 。
+
+从版本3.0.0开始，插件不再与Sublime Text 2兼容。在3.0.0之前制作的版本将为Sublime Text 2用户提供服务。Sublime Text 2用户的文档可以从st2-maintenance分支的 README中找到
+
+安装
+
+最简单的安装方法是使用 包控制并搜索： Robot Framework Assistant。
+
+替代安装方法
+
+将该插件作为zip下载。打开Sublime Text并单击 | 首选项| 浏览软件包| 打开软件包目录。然后创建一个名为的目录Robot Framework Assistant并将该插件解压缩到该目录。
+
+组态
+
+在您可以开始使用Robot Framework Assistant之前，您必须至少配置用户包 Robot.sublime-settings文件中的设置 。要打开文件，请导航至：首选项| 包装设置 | Robot Framework助手| 设置 - 用户| 默认设置可以从首选项|中 找到 包装设置| Robot Framework助手| 设置 - 默认|
+
+用户需要定义的唯一必需设置是 robot_framework_workspace 和 path_to_python。当尝试插件时，其余参数可以安全地保留在默认值中。
+
+robot_framework_workspace
+
+在Robot Framework Assistant可以提供关键字和变量完成功能之前，它需要从测试套件和资源文件中创建一个数据库。参数定义执行机器人数据扫描的根文件夹。
+
+必须指向一个文件夹并指向一个文件是不允许的。Robot Framework: Create database执行命令时，根据此设置执行Robot Framework测试数据的扫描。
+
+在Windows中，ow写入双反斜线以写入文字反斜杠。
+
+robot_framework_keyword_argument_format
+
+定义使用关键字完成时如何格式化关键字参数。设置为false时，每个参数将被格式化为单独的行。如果设置为true关键字并且参数以单行形式返回。
+
+robot_framework_extension
+
+文件扩展名定义了Robot Framework Assistant插件将从robot_framework_workspace选项中定义的文件夹中搜索哪些类型的文件。
+
+此设置影响插件命令和功能，但此插件中的主题定义不受此选项的影响。
+
+如果在Robot Framework数据中导入库或变量文件，这些导入将自动解析并包含在扫描中。
+
+path_to_python
+
+为了创建要使用的关键字和变量数据库，必须定义Python二进制文件的路径。它必须与安装Robot Framework的Python二进制文件相同。
+
+在Linux环境中，这可能类似于：/ usr / bin / python，而在Windows中，这可能类似于：C：\ Python27 \ python.exe
+
+robot_framework_module_search_path
+
+模块搜索路径定义了搜索Robot Framework库的路径列表。示例如果您已使用库名称导入库，则模块搜索路径必须包含库可以位于的文件夹。
+
+Robot Framework Assistant使用Robot Framework API分析测试数据和库。所有更改（非系统范围）用于定位库，还必须添加到Robot Framework Assistant的模块搜索路径中
+
+更多细节如何在Robot Framework中搜索库可以从 Robot Framework用户指南中找到
+
+robot_framework_automatic_database_table
+
+robot_framework_automatic_database_table设置控制内部数据库更新。如果设置为true，则在保存Robot Framework测试数据文件后创建内部数据库表。如果设置为false，内部数据库表只有更新的时候Create Database，Create Database Tables或者 Update Internal Database For Active Tab命令的前提。
+
+该设置仅控制Robot Framework测试数据。如果库或变量文件更新，然后Create Database 或Create Database Tables命令必须运行更新内部数据库。
+
+robot_framework_library_in_xml
+
+如果库在解析时不可用，例如，如果库使用远程库接口导入，或者它不像Python那样用SwingLibrary编写， 那么可以使用此设置以libdoc XML格式导入库 。
+
+从此路径找到的库是全球可用的，例如BuiltIn库。关键字完成的例子可以工作，尽管这个库可能不会导入那个特定的资源或测试套件。
+
+robot_framework_builtin_variables
+
+Robot Framework默认有一些预定义和内置的变量。这些变量名称可能会在不同的Robot Framework版本之间更改。使用此设置来定义Robot Framework BuiltIn变量的列表。查看变量列表的最简单方法是使用以下测试用例运行Robot Framework：
+
+*** 测试用例 ***	
+记录所有内置变量	
+日志变量
+注意：至少在Robot Framework 2.9.2版本中，以下命令未列出空变量，如$ {EMPTY}。
+
+robot_framework_database_path
+
+默认情况下，内部数据库是在插件安装目录，数据库文件夹中创建的。有时可以更改默认的数据库位置。
+
+示例如果在Sublime工作区文件中定义了robot_framework_workspace，并且用户想要在不同的项目之间切换。然后定义robot_framework_database_path设置也是项目特定的，这很有用。当内部数据库特定于项目时，用户在项目更改时不会重新创建数据库。
+
+robot_framework_database_path必须是文件夹的路径。如果该设置不是文件夹的路径，则在插件安装目录中创建数据库。
+
+robot_framework_log_commands
+
+设置控件将使Robot Framework: Command Logging 命令启用或禁用Sublime Text log_commands API调用。如果robot_framework_log_commands设置评估为Python True，则会启用log_commands API调用。如果设置评估为Python False，则会禁用log_commands API调用。
+
+如果启用了log_commands API调用。所有命令都从键绑定运行，菜单将记录到控制台。
+
+要启用日志记录，请设置robot_framework_log_commands为值 true。然后Robot Framework: Command Logging从命令面板运行命令。
+
+robot_framework_keyword_prefixes
+
+在jump to keyword命令中忽略的前缀。
+
+当在Gherkin关键字中编写测试用例时，前缀类似于given，when和then。这些前缀是特定于测试用例的，并且在查找关键字时必须被忽略。
+
+典型的黄瓜故事配置：“robot_framework_keyword_prefixes”：[“Given”，“When”，“Then”，“And”，“But”]
+
+语法定义
+
+默认情况下，这个插件将用于扩展名为.robot和插件的文件 将使用四个空格作为单元分隔符。用户可以更改设置，但请参阅 用于保存用户设置的 Sublime非官方文档。
+
+更改文件扩展名
+
+文件扩展名在Robot.tmLanguage文件中定义 。要更改文件扩展名，请导航至 用户包 文件夹并将Robot.tmLanguage文件复制到用户设置文件夹中。
+
+在Robot.tmLanguage用户设置中的文件中，查找包含以下内容的行：
+
+< key > fileTypes </ key >
+    < 数组 >
+        < string > robot </ string >
+    </ array >
+该<string>元素包含文件类型定义。
+
+更改单元格分隔符
+
+单元格分隔符在Robot.tmPreferences文件中定义 。要更改单元格分隔符，请导航到 用户包 文件夹并打开Robot.tmPreferences文件。
+
+寻找包含<string><![CDATA[ ]]></string>XML标签的行。[ ]字符内部有四个空格，这四个空格定义插件用户的单元格分隔符。单元格分隔符是for循环片段 用于对齐和正确显示剪切的示例 。
+
+热键
+
+按关键字顶部的按钮Alt + Enter或Alt + Click鼠标将转到关键字源。关键字的来源可以位于Robot Framework测试数据或Python库中。转到对用其他编程语言编写的库不起作用。
+在资源或库导入之上按Alt + Enter或Alt + Click用鼠标，将打开导入的资源或库文件。
+按Ctrl + Alt + Enter或Ctrl + Alt + Clicl用鼠标将显示关键字文档。
+按Ctrl + /或Ctrl + Shift + /将会打开和关闭评论
+按下Ctrl + Alt + a将运行该Robot Framework: Create Database命令
+按下Ctrl + Alt + s将运行该Robot Framework: Create Database Tables命令
+按下Ctrl + Alt + i将运行该Robot Framework: Update Internal Database For Active Tab命令
+按下Ctrl + Alt + r将在弹出菜单中显示可用的库，资源或变量导入。仅当光标在设置表中并且行包含或设置时Libraries，才会显示弹出式菜单。ResourceVariables
+内部数据库中的关键字和变量维基页面Ctrl + Alt + a/s/i说明了这些命令 的用法
+
+片段
+
+片段 是提供常用文本模板的Sublime Text功能，并且在此插件中，片段提供了对Robot Framework数据中常用设置的快速访问。要访问片段，请编写所需的字符组合。如果该代码段未显示Tab，请按键查看片段完成列表。片段可以通过以下键组合访问：
+
+写:f访问Robot Framework for循环。目前有以下片段： 正常， 枚举， 范围 和zip 循环类型。
+写入*k访问*** Keywords ***表格片段。
+写*s接取*** Settings ***表，并将其设置。目前有提供以下片段： Default Tags，Documentation，Library，Resource， *** Settings ***，Test Setup，Test Teardown，Test Template 和Test Timeout。
+写入*t访问*** Test Cases ***表格片段。
+写入:访问 关键字 和 测试用例 设置。目前有提供以下片段:: [Arguments]，[Documentation]，[Return]，[Setup]，[Tags]，[Template]，[Teardown] 和[Timeout]。
+写入*v访问*** Variables ***片段。
+循环片段的不同使用片段中的 字段 功能。完成for循环snippry后，可以通过按键访问不同的for循环字段tab。
+
+请注意，插件不会阻止用户在测试数据中的无效位置放置片段。请参阅Robot Framework 用户指南 以查找不同可用片段的正确用法。
+
+转到关键字
+
+或者，使用Sublime Text的 Go To Symbol 转到关键字或变量的来源。
+
+请注意，Go To Symbol只适用于同一文件中的关键字和变量。无法使用Go To Symbol其他资源文件或库中的关键字或变量跳转。
+
+创建一个数据库
+
+插件配置完成后，插件需要扫描测试数据以创建包目录的内部数据库。数据库将包含每个测试用例，资源和库的表。表创建完成后，插件将为每个测试用例，资源和库创建一个索引。索引将包含所有关键字和变量，测试用例或资源在测试数据中导入的内容。索引允许插件仅为那些为当前打开的测试或资源文件导入的关键字或变量提供完成。
+
+当用户在Sublime中的不同选项卡之间切换时，插件将自动更新指向数据库中索引的指针。
+
+更详细的描述如何更新内部数据库可以从 内部数据库中找到关键字和变量 维基页面。
+
+数据库创建错误调查
+
+创建数据库时，插件会将日志文件写入软件包安装目录：database/scan_index.log 文件。如果在创建数据库时发生错误，请检查日志并更正可能的错误。
+
+项目特定的设置
+
+在配置Robot Framework Assistant时，也可以使用项目特定的设置。
+
+打开项目设置并将robot_framework_assistant字典添加到设置文件中：
+
+"robot_framework_assistant":
+    {
+
+    }
+
+例如，如果配置项目特定的工作区和数据库路径，robot_framework_assistant字典应如下所示：
+
+"robot_framework_assistant":
+    {
+        "robot_framework_workspace": "/path/to/folder/containing/robot/data",
+        "robot_framework_database_path": "/path/to/project/database"
+    }
