@@ -12,7 +12,22 @@ http://blog.csdn.net/Allan_shore_ma/article/details/68944840
 --python -m 与 pybot ，结合robot库，采用robotframework框架运行脚本
 http://blog.csdn.net/BigDeng_2014/article/details/77005530
 
---
+---------------------------------------------【higher】----【B】--------
+--[robot framework] 脚本解析模块原理
+http://blog.csdn.net/mqfcu8/article/details/78181979
 
+--理解Ride是如何控制Robot Framework执行
+http://blog.csdn.net/u011546806/article/details/45248105
 
+--selenium + robotframework的运行原理
+http://blog.csdn.net/test_xhz/article/details/78092579
+---------------------------------------------【higher】----【E】--------
 
+--robotframework当执行用例只打开一次浏览器的情况下关闭之前未关闭的父窗口
+http://blog.csdn.net/sinat_16689259/article/details/62890940
+
+--RobotFrameWork_结束*driverserver方法
+http://blog.csdn.net/xuyubotest/article/details/43270591
+
+--使用robotframework常见的几个问题
+http://blog.csdn.net/u011757108/article/details/52486631
