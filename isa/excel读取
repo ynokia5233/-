@@ -1,0 +1,32 @@
+--
+
+--
+robot数据驱动，使用ExcelLibrary库
+
+目标：通过操作数据文件，实现数据与脚本的分离。 引入ExcelLibrary库，操作Excel文件
+
+安装命令   pip install robotframework-excellibrary
+
+ExcelLibrary库常用关键字
+
+Open Excel                       打开Excel文件
+Get Row Count                 获取行数
+Get Column Count            获取列数
+Get Row Values                获取某一行的值
+Get Column Values           获取某一列的值
+Read Cell Data By Coordinates      通过列行编号获取值
+Read Cell Data By Name                 按名称读取单元格数据
+
+ExcelLibrary库使用注意事项：
+
+1.只支持xls格式的Excel文档
+2.Excel表格中的数值，代码读取后会显示为浮点型
+  如123，读取后显示为123.00，造成传参不一致
+  解决方案：设置单元格格式---->文本
+3.读取每行或每列数据，存储到list变量中，是一个二维数组
+  如（A1，123）(B1,张三)
+4.数组的位置编号都是从0开始的
+
+
+
+相关链接：《robotFramework 读取Excel文件数据》
