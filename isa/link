@@ -23,6 +23,9 @@ http://blog.csdn.net/u011546806/article/details/45248105
 
 --selenium + robotframework的运行原理
 http://blog.csdn.net/test_xhz/article/details/78092579
+
+--Robot Framework 经验谈 - 以太网底层抓包以及协议分析
+http://blog.csdn.net/divfor/article/details/24183457
 ---------------------------------------------【higher】----【E】--------
 
 --robotframework当执行用例只打开一次浏览器的情况下关闭之前未关闭的父窗口
