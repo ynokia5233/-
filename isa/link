@@ -5,6 +5,8 @@ http://blog.csdn.net/cyjs1988/article/details/76284289
 
 --使用pycharm编写和运行RF脚本
 http://blog.csdn.net/CCGGAAG/article/details/77529724
+--robotframework 使用自己的python库
+http://blog.csdn.net/justheretobe/article/details/69914163
 
 --数据驱动,涉及自定义库与excel读取
 http://blog.csdn.net/Allan_shore_ma/article/details/68944840
@@ -26,7 +28,7 @@ http://blog.csdn.net/test_xhz/article/details/78092579
 --robotframework当执行用例只打开一次浏览器的情况下关闭之前未关闭的父窗口
 http://blog.csdn.net/sinat_16689259/article/details/62890940
 
---RobotFrameWork_结束*driverserver方法
+--RobotFrameWork_结束*driverserver方法【不好用】
 http://blog.csdn.net/xuyubotest/article/details/43270591
 
 --使用robotframework常见的几个问题
