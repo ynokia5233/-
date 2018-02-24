@@ -1,15 +1,13 @@
---
-直接使用路径读取excel时，出现错误AssertionError；
+--直接使用路径读取excel时，出现错误AssertionError；----------------------
 
-解决方法Rstrip Path（是什么库还在看），(设计库：OperatingSystem)eg:
+解决方法Rstrip Path（是什么库还在看【是自定义的库，使用rstrip方法】），(设计库：OperatingSystem)eg:
 ${file_name}	Set Variable	Training Service(EN) (1).xlsx
 ${user_path}	OperatingSystem.Run	echo %userprofile%
 ${user_path}	Rstrip Path	${user_path}
 ${Path}	Rstrip Path	${user_path}
 Open Excel	${Path}\\Downloads\\0chromeDownload\\${file_name}
 
---
-robot数据驱动，使用ExcelLibrary库
+--robot数据驱动，使用ExcelLibrary库----------------------
 目标：通过操作数据文件，实现数据与脚本的分离。 引入ExcelLibrary库，操作Excel文件
 
 安装命令   pip install robotframework-excellibrary
