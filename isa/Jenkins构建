@@ -1,0 +1,8 @@
+
+
+--构建参照文章
+http://www.cnblogs.com/guanfuchang/p/4051761.html
+
+
+增加构建步骤-Execute Windows batch command，我先写个简单的命令，完整命令行参数大家自己在命令行输入pybot.bat --help来看
+pybot.bat C:\Python27\Scripts\01.AutoTestCase\TWO\login01.txt
