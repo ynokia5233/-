@@ -1,0 +1,19 @@
+
+特点：Switch Browser针对的是2个Open Browser以上的切换；Select Window针对的是1个Open Browser里面某个点击事件打开了另外一个新窗口
+
+1、例子 Switch Browser
+open Browser ...
+open Browser ...
+Switch Browser 1    #获取第一个浏览器的窗口
+${name}   get title   #获取窗口的title
+
+2、例子Select Window。这个例子先获取所有窗口title，定义变量每个窗口，再Select Window某个窗口
+open Browser ...
+....    #中间有操作打开第二个窗口
+${titles}   get window titles
+${t2} get from list   ${titles}   1
+${t1} get from list   ${titles}   0
+select window   title=${t1}
+....
+
+3、Close Window关闭当前处在的窗口，并不能如 Select Window +titile。Close Window后面不能带参数
