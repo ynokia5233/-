@@ -1,0 +1,375 @@
+
+【转】 SQL begin end 块作用
+http://www.cnblogs.com/iloveyoucc/archive/2012/07/16/2593150.html
+PL/SQL存储过程编程 收藏
+
+  /**author huangchaobiao 
+*Email:huangchaobiao111@163.com 
+*/
+
+PL/SQL存储过程编程(上) 
+1. Oracle应用编辑方法概览 
+答：1) Pro*C/C++/... : C语言和数据库打交道的方法，比OCI更常用; 
+2) ODBC 
+3) OCI: C语言和数据库打交道的方法，和ProC很相似，更底层，很少用; 
+4) SQLJ: 很新的一种用Java访问Oracle数据库的方法，会的人不多; 
+5) JDBC 
+6) PL/SQL: 存储在数据内运行, 其他方法为在数据库外对数据库访问;
+
+2. PL/SQL 
+答：1) PL/SQL(Procedual language/SQL)是在标准SQL的基础上增加了过程化处理的语言; 
+2) Oracle客户端工具访问Oracle服务器的操作语言; 
+3) Oracle对SQL的扩充;
+
+4. PL/SQL的优缺点 
+答：优点： 
+1) 结构化模块化编程，不是面向对象; 
+2) 良好的可移植性(不管Oracle运行在何种操作系统); 
+3) 良好的可维护性(编译通过后存储在数据库里); 
+4) 提升系统性能;
+
+缺点 
+1) 不便于向异构数据库移植应用程序(只能用于Oracle);
+
+5. SQL与PL/SQL的区别 
+答：SQL：1) 第四代语言(智能语言); 
+2) 做什么，不管怎么做; 
+3) 缺少过程与控制语句; 
+4) 无算法 
+PL/SQL: 1) 扩展变量和类型; 
+2) 扩展控制结构; 
+3) 扩展过程与函数; 
+4) 扩展对象类型与方法
+
+
+第二章
+
+PL/SQL程序结构
+
+1. PL/SQL块 
+答：1) 申明部分, DECLARE(不可少); 
+2) 执行部分, BEGIN...END; 
+3) 异常处理，EXCEPTION(可以没有);
+
+2. PL/SQL开发环境 
+答：可以运用任何纯文本的编辑器编辑，例如：VI
+
+3. PL/SQL字符集 
+答：PL/SQL对大小写不敏感
+
+4. 标识符命名规则 
+答：1) 字母开头; 
+2) 后跟任意的非空格字符、数字、货币符号、下划线、或# ; 
+3) 最大长度为30个字符(八个字符左右最合适);
+
+5. 变量声明 
+答：语法 
+Var_name type [CONSTANT][NOT NULL][:=value]; 
+注：1) 申明时可以有默认值也可以没有; 
+2) 如有[CONSTANT][NOT NULL], 变量一定要有一个初始值; 
+3) 赋值语句为“:=”; 
+4) 变量可以认为是数据库里一个字段; 
+5) 规定没有初始化的变量为NULL;
+
+第三章
+
+1. 数据类型 
+答：1) 标量型：数字型、字符型、布尔型、日期型; 
+2) 组合型：RECORD(常用)、TABLE(常用)、VARRAY(较少用) 
+3) 参考型：REF CURSOR(游标)、REF object_type 
+4) LOB(Large Object)
+
+2. %TYPE 
+答：变量具有与数据库的表中某一字段相同的类型 
+例：v_FirstName studengts.first_name%TYPE;
+
+3. RECORD类型 
+答：TYPE record_name IS RECORD( /*其中TYPE，IS，RECORD为关键字，record_name为变量名称*/ 
+field1 type [NOT NULL][:=expr1], /*每个等价的成员间用逗号分隔*/ 
+field2 type [NOT NULL][:=expr2], /*如果一个字段限定NOT NULL，那么它必须拥有一个初始值*/ 
+... /*所有没有初始化的字段都会初始为NULL 
+fieldn type [NOT NULL][:=exprn]);
+
+4. %ROWTYPE 
+答：返回一个基于数据库定义的类型 
+DECLARE 
+v_StuRec Student%ROWTYPE; /*Student为表的名字*/
+
+注：与3中定一个record相比，一步就完成，而3中定义分二步：a. 所有的成员变量都要申明; b. 实例化变量;
+
+5. TABLE类型 
+答：TYPE tabletype IS TABLE OF type INDEX BY BINARY_INTEGER; 
+例：DECLARE 
+TYPE t_StuTable IS TABLE OF Student%ROWTYPE INDEX BY BINARY_INTERGER; 
+v_Student t_StuTable; 
+BEGIN 
+SELECT * INTO v_Student(100) FROM Student WHERE id = 1001; 
+END; 
+注：1) 行的数目的限制由BINARY_INTEGER的范围决定;
+
+6. 变量的作用域和可见性 
+答：1) 执行块里可以嵌入执行块; 
+2) 里层执行块的变量对外层不可见; 
+3) 里层执行块对外层执行块变量的修改会影响外层块变量的值;
+
+第四章
+
+1. 条件语句 
+答：IF boolean_expression1 THEN 
+... 
+ELSIF boolean_expression2 THEN /*注意是ELSIF，而不是ELSEIF*/ 
+... /*ELSE语句不是必须的，但END IF;是必须的*/ 
+ELSE 
+... 
+END IF;
+
+2. 循环语句 
+答：1) Loop 
+... 
+IF boolean_expr THEN /* */ 
+EXIT; /* EXIT WHEN boolean_expr */ 
+END IF; /* */ 
+END LOOP; 
+2) WHILE boolean_expr LOOP 
+... 
+END LOOP; 
+3) FOR loop_counter IN [REVERSE] low_blound..high_bound LOOP 
+... 
+END LOOP; 
+注：a. 加上REVERSE 表示递减，从结束边界到起始边界，递减步长为一; 
+b. low_blound 起始边界; high_bound 结束边界;
+
+3. GOTO语句 
+答：GOTO label_name; 
+1) 只能由内部块跳往外部块; 
+2) 设置标签：<<label_name>> 
+3) 示例： 
+LOOP 
+... 
+IF D%ROWCOUNT = 50 THEN 
+GOTO l_close; 
+END IF; 
+... 
+END LOOP; 
+<<l_close>>; 
+...
+
+4. NULL语句 
+答：在语句块中加空语句，用于补充语句的完整性。示例： 
+IF boolean_expr THEN 
+... 
+ELSE 
+NULL; 
+END IF;
+
+5. SQL in PL/SQL 
+答：1) 只有DML SQL可以直接在PL/SQL中使用;
+
+第五章
+
+1. 游标(CURSOR) 
+答：1) 作用：用于提取多行数据集; 
+2) 声明：a. 普通申明：DELCARE CURSOR CURSOR_NAME IS select_statement /* CURSOR的内容必须是一条查询语句*/ 
+b. 带参数申明：DELCARE CURSOR c_stu(p_id student.ID%TYPE) SELECT * FROM student WHERE ID = p_id; 
+3) 打开游标：OPEN Cursor_name; /*相当于执行select语句，且把执行结果存入CURSOR; 
+4) 从游标中取数：a. FETCH cursor_name INTO var1, var2, ...; /*变量的数量、类型、顺序要和Table中字段一致;*/ 
+b. FETCH cursor_name INTO record_var; 
+注：将值从CURSOR取出放入变量中，每FETCH一次取一条记录; 
+5) 关闭游标: CLOSE Cursor_name; 
+注：a. 游标使用后应该关闭; 
+b. 关闭后的游标不能FETCH和再次CLOSE; 
+c. 关闭游标相当于将内存中CURSOR的内容清空;
+
+2. 游标的属性 
+答：1) %FOUND: 是否有值; 
+2) %NOTFOUND: 是否没有值; 
+3) %ISOPEN: 是否是打开状态; 
+4) %ROWCOUNT: CURSOR当前的记录号;
+
+3. 游标的FETCH循环 
+答：1) LOOP 
+FETCH cursor INTO ... 
+EXIT WHEN cursor%NOTFOUND; /*当cursor中没记录后退出*/ 
+END LOOP; 
+2) WHILE cursor%FOUND LOOP 
+FETCH cursor INTO ... 
+END LOOP; 
+3) FOR var IN cursor LOOP 
+FETCH cursor INTO... 
+END LOOP;
+
+第六章
+
+1. 异常 
+答：DECLARE 
+... 
+e_TooManyStudents EXCEPTION; /* 申明异常 */ 
+... 
+BEGIN 
+... 
+RAISE e_TooManyStudents; /* 触发异常 */ 
+... 
+EXCEPTION 
+WHEN e_TooManyStudents THEN /* 触发异常 */ 
+... 
+WHEN OTHERS THEN /* 处理所有其他异常 */ 
+... 
+END;
+
+ 
+
+PL/SQL存储过程编程(下)
+
+1. 存储过程(PROCEDURE) 
+答：创建过程： 
+CREATE [OR REPLACE] PROCEDURE proc_name 
+[(arg_name[{IN|OUT|IN OUT}]TYPE, 
+arg_name[{IN|OUT|IN OUT}]TYPE)] 
+{IS|AS} 
+procedure_body 
+1) IN: 表示该参数不能被赋值(只能位于等号右边); 
+2) OUT:表示该参数只能被赋值(只能位于等号左边); 
+3) IN OUT: 表示该类型既能被赋值也能传值;
+
+2. 存储过程例子 
+答：CREATE OR REPLACE PROCEDURE ModeTest( 
+p_InParm IN NUMBER, 
+p_OutParm OUT NUMBER, 
+p_InOutParm IN OUT NUMBER) 
+IS 
+v_LocalVar NUMBER; /* 声明部分 */ 
+BEGIN 
+v_LocalVar:=p_InParm; /* 执行部分 */ 
+p_OutParm:=7; 
+p_InOutParm:=7; 
+... 
+EXCEPTION 
+... /* 异常处理部分 */ 
+END ModeTest;
+
+3. 调用PROCEDURE的例子 
+答：1) 匿名块可以调; 
+2) 其他PROCDEURE可以调用; 
+例： 
+DECLARE 
+v_var1 NUMBER; 
+BEGIN 
+ModeTest(12, v_var1, 10); 
+END; 
+注：此时v_var1等于7
+
+4. 指定实参的模式 
+答：1) 位置标示法：调用时添入所有参数，实参与形参按顺序一一对应; 
+2) 名字标示法：调用时给出形参名字，并给出实参 
+ModeTest(p_InParm=>12, p_OutParm=>v_var1, p_Inout=>10); 
+注：a. 两种方法可以混用; 
+b. 混用时第一个参数必须通过位置来指定。
+
+5. 函数(Function)与过程(Procedure)的区别 
+答：1) 过程调用本身是一个PL/SQL语句(可以在命令行中通过exec语句直接调用); 
+2) 函数调用是表达式的一部分;
+
+6. 函数的声明 
+答：CREATE [OR REPLACE] PROCEDURE proc_name 
+[(arg_name[{IN|OUT|IN OUT}]TYPE, 
+arg_name[{IN|OUT|IN OUT}]TYPE)] 
+RETURN TYPE 
+{IS|AS} 
+procedure_body 
+注：1) 没有返回语句的函数将是一个错误;
+
+7. 删除过程与函数 
+答：DROP PROCEDURE proc_name; 
+DROP FUNCTION func_name;
+
+第八章
+
+1. 包 
+答：1) 包是可以将相关对象存储在一起的PL/SQL的结构; 
+2) 包只能存储在数据库中，不能是本地的; 
+3) 包是一个带有名字的声明; 
+4) 相当于一个PL/SQL块的声明部分; 
+5) 在块的声明部分出现的任何东西都能出现在包中; 
+6) 包中可以包含过程、函数、游标与变量; 
+7) 可以从其他PL/SQL块中引用包，包提供了可用于PL/SQL的全局变量。 
+8) 包有包头和包主体，如包头中没有任何函数与过程，则包主体可以不需要。
+
+2. 包头 
+答：1) 包头包含了有关包的内容的信息，包头不含任何过程的代码。 
+2) 语法： 
+CREATE [OR REPLACE] PACKAGE pack_name {IS|AS} 
+procedure_specification|function_specification|variable_declaration|type_definition|exception_declaration|cursor_declaration
+END pack_name; 
+3) 示例： 
+CREATE OR REPLACE PACKAGE pak_test AS 
+PROCEDURE RemoveStudent(p_StuID IN students.id%TYPE); 
+TYPE t_StuIDTable IS TABLE OF students.id%TYPE INDEX BY BINARY_INTEGER; 
+END pak_test;
+
+3. 包主体 
+答：1) 包主体是可选的，如包头中没有任何函数与过程，则包主体可以不需要。 
+2) 包主体与包头存放在不同的数据字典中。 
+3) 如包头编译不成功，包主体无法正确编译。 
+4) 包主体包含了所有在包头中声明的所有过程与函数的代码。 
+5) 示例： 
+CREATE OR REPLACE PACKAGE BODY pak_test AS 
+PROCEDURE RemoveStudent(p_StuID IN students.id%TYPE) IS 
+BEGIN 
+... 
+END RemoveStudent; 
+TYPE t_StuIDTable IS TABLE OF students.id%TYPE INDEX BY BINARY_INTEGER; 
+END pak_test;
+
+4. 包的作用域 
+答：1) 在包外调用包中过程(需加包名)：pak_test.AddStudent(100010, 'CS', 101); 
+2) 在包主体中可以直接使用包头中声明的对象和过程(不需加包名);
+
+5. 包中子程序的重载 
+答：1) 同一个包中的过程与函数都可以重载; 
+2) 相同的过程或函数名字，但参数不同;
+
+6. 包的初始化 
+答：1) 包存放在数据库中; 
+2) 在第一次被调用的时候，包从数据库中调入内存并被初始化; 
+3) 包中定义的所有变量都被分配内存; 
+4) 每个会话都将拥有自己的包内变量的副本。
+
+第九章
+
+1. 触发器 
+答：1) 触发器与过程/函数的相同点 
+a. 都是带有名字的执行块; 
+b. 都有声明、执行体和异常部分; 
+2) 触发器与过程/函数的不同点 
+a. 触发器必须存储在数据库中; 
+b. 触发器自动执行;
+
+2. 创建触发器 
+答：1) 语法： 
+CREATE [OR REPLACE] TRIGGER trigger_name 
+{BEFORE|AFTER} triggering_event ON table_reference 
+[FOR EACH ROW [WHEN trigger_condition]] 
+trigger_body; 
+2) 范例： 
+CREATE OR REPLACE TRIGGER UpdateMajorStats AFTER INSERT OR DELETE OR UPDATE ON students 
+DECLARE 
+CURSOR c_Statistics IS 
+SELECT * FROM students GROUP BY major; 
+BEGIN 
+... 
+END Up;
+
+3. 触发器 
+答：1) 三个语句(INSERT/UPDATE/DELETE); 
+2) 二种类型(之前/之后); 
+3) 二种级别(row-level/statement-level); 
+所以一共有 3 X 2 X 2 = 12
+
+4. 触发器的限制 
+答：1) 不应该使用事务控制语句; 
+2) 不能声明任何LONG或LONG RAW变量; 
+3) 可以访问的表有限。
+
+5. 触发器的主体可以访问的表 
+答：1) 不可以读取或修改任何变化表(被DML语句正在修改的表); 
+2) 不可以读取或修改限制表(带有约束的表)的主键、唯一值、外键列。
