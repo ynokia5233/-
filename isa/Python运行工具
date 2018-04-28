@@ -1,0 +1,10 @@
+
+notepad++如何运行python
+日期：2012-08-04 11:54浏览：930评论：0
+1. 设置环境变量Path, 后面加上python路径, 例如C:\Python32
+2. 点notepad++的运行->运行, 输入cmd /k cd /d "$(CURRENT_DIRECTORY)" & python "$(FULL_CURRENT_PATH)" & ECHO. & PAUSE & EXIT
+3. 保存, 起个名, 例如 Run Python
+4. 配置一下快捷键, 注意不要和其他的冲突.
+ 
+over
+"人生短暂, 我用python"
