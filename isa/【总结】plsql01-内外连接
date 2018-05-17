@@ -1,4 +1,5 @@
 
+--来自http://www.cnblogs.com/hehaiyang/p/4745897.html
 --【】01.内连接
 a.显示内连接，不分左右，不带left或right，只显示重合的数据，也就是取交集
 select u.*,a.* from user_info u inner join address a on u.id=a.user_id;
