@@ -7,11 +7,19 @@ select u.*,a.* from user_info u,address a where u.id=a.user_id;
 
 --02.外连接
 --隐式左/右外链接，outer可以不写；
-LEFT JOIN是以左表的记录为基础的,示例中t_A可以看成左表,t_B可以看成右表,它的结果集是t_A表中的全部数据，再加上t_A表和t_B表匹配后的数据。换句话说,左表(t_A)的记录将会全部表示出来,而右表(t_B)只会显示符合搜索条件的记录。t_B表记录不足的地方均为NULL。
+LEFT JOIN是以左表的记录为基础的,示例中t_A可以看成左表,t_B可以看成右表,它的结果集是t_A表中的全部数据，再加上t_A表和t_B表匹配后的数据。
+换句话说,左表(t_A)的记录将会全部表示出来,而右表(t_B)只会显示符合搜索条件的记录。t_B表记录不足的地方均为NULL。
 
 select * from t_A a left join t_B b on a.id = b.id;
-RIGHT OUTER JOIN/RIGHT JOIN相反；
+而RIGHT OUTER JOIN/RIGHT JOIN相反；
 
 --显式左/右外链接，带上outer；
 select u.*,a.* from user_info u left outer join address a on u.id = a.user_id;
+
 --用（+）来实现， 这个+号可以这样来理解： + 表示补充，即哪个表有加号，这个表就是匹配表。如果加号写在左表，右表就是全部显示，所以是右连接。
+对于外连接， 也可以使用“(+) ”来表示。 关于使用（+）的一些注意事项：
+（+）操作符只能出现在WHERE子句中，并且不能与OUTER JOIN语法同时使用。
+ 当使用（+）操作符执行外连接时，如果在WHERE子句中包含有多个条件，则必须在所有条件中都包含（+）操作符。
+（+）操作符只适用于列，而不能用在表达式上。
+（+）操作符不能与OR和IN操作符一起使用。
+（+）操作符只能用于实现左外连接和右外连接，而不能用于实现完全外连接。
