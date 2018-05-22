@@ -1,0 +1,16 @@
+
+
+py2.7版本
+01.字符串中文输出乱码问题
+>首行加
+#coding=utf-8
+>转换
+u"Two一行白鹭上青天"
+>
+Str1.decode('utf-8')
+
+02.字典中文输出乱码
+import json
+print json.dumps(stuff, ensure_ascii=False, encoding='UTF-8')
+
+03.
