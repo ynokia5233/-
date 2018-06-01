@@ -1,0 +1,5 @@
+
+--安装与卸载
+http://cyf0110.iteye.com/blog/1888285
+一键安装会自动安装python（或其他的解释器）并且自动设置PATH； 
+安装方法：#TBD (https://code.google.com/p/robotframework/wiki/OneClickInstaller) 
