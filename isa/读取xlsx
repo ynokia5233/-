@@ -1,0 +1,10 @@
+
+--导出文件的格式默认是只读模式，openpyxl的读取值data_only=True的模式无法获取数据；打开再保存就可以读取值;
+import win32com.client #这里用到win32com.client，需要安装pywin32模块
+def get_value(path,sheet,row,cell):
+    excel = win32com.client.Dispatch('Excel.Application') #打开EXCEL
+    xlBook = excel.Workbooks.Open(path)
+    xlSht = xlBook.Worksheets(sheet)
+    aaa = xlSht.Cells(row,cell).Value #row指数据所在行号，cell指数据所在列号
+    xlBook.Close(SaveChanges=1)
+    return aaa
