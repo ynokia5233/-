@@ -9,3 +9,6 @@ svn list -R http://szxsvn02-rd:6801/svn/CP_UniSTAR_SVN/UniSTAR%20SCTES/ |findstr
 --depth infinity指递归查询目录
 svn list --depth infinity http://szxsvn02-rd:6801/svn/CP_UniSTAR_SVN/UniSTAR%20SCTES/ |findstr 建议书
 
+
+--cmd查看帮助
+findstr /?
