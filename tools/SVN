@@ -1,0 +1,11 @@
+
+
+---cmd命令窗口快速获取对应关键字所在SVN内的文件（含路径）
+svn list -R http://szxsvn02-rd:6801/svn/CP_UniSTAR_SVN/UniSTAR%20SCTES/ |findstr 建议书
+--grep需要安装cy?支持
+svn list -R http://szxsvn02-rd:6801/svn/CP_UniSTAR_SVN/UniSTAR%20SCTES/ |grep 培训建议书
+svn list -R http://szxsvn02-rd:6801/svn/CP_UniSTAR_SVN/UniSTAR%20SCTES/ |findstr /C:培训建议书
+
+--depth infinity指递归查询目录
+svn list --depth infinity http://szxsvn02-rd:6801/svn/CP_UniSTAR_SVN/UniSTAR%20SCTES/ |findstr 建议书
+
