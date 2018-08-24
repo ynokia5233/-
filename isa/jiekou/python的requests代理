@@ -1,0 +1,39 @@
+python requests 设置 proxy 和 SSL 证书
+
+requests使用代理时，有的需要用户认证，
+
+【设置 proxy】无认证
+--方法一
+import requests
+proxies = {'http': 'http://localhost:8888', 'https': 'http://localhost:8888'}
+requests.get('http://example.org', proxies=proxies)
+--方法二
+import requests
+s = requests.Session()
+s.proxies = {'http': 'http://localhost:8888', 'https': 'http://localhost:8888'}
+requests.get('http://example.org')
+
+
+【设置 proxy】有认证
+import requests
+# from requests.auth import HTTPProxyAuth
+proxy_string = 'http://ywx515682:yge@171211@openproxy.huawei.com:8080'
+s = requests.Session()
+s.proxies = {"http": proxy_string, "https": proxy_string}
+# s.auth = HTTPProxyAuth('ywx515682', 'yge@171211')
+r = s.get('http://www.google.com')  # OK
+print(r.text)
+
+
+【设置 SSL 证书】使用文本格式的 PEM
+--方法一
+import requests
+proxies = {'http': 'http://localhost:8888', 'https': 'http://localhost:8888'}
+requests.get('http://example.org', proxies=proxies, verify='/path-to/charles-ssl-proxying-certificate.pem')
+--方法二
+import requests
+s = requests.Session()
+s.proxies = {'http': 'http://localhost:8888', 'https': 'http://localhost:8888'}
+s.verify='/path-to/charles-ssl-proxying-certificate.pem'
+requests.get('http://example.org')
+特性
