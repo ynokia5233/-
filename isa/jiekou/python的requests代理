@@ -17,7 +17,7 @@ requests.get('http://example.org')
 【设置 proxy】有认证
 import requests
 # from requests.auth import HTTPProxyAuth
-proxy_string = 'http://ywx515682:yge@171211@openproxy.huawei.com:8080'
+proxy_string = 'http://y123456:yge@123456@openproxy.123456.com:8080'
 s = requests.Session()
 s.proxies = {"http": proxy_string, "https": proxy_string}
 # s.auth = HTTPProxyAuth('ywx515682', 'yge@171211')
