@@ -1,0 +1,83 @@
+《》连接邮箱， 并读取邮件进行检查实例 》
+
+set logo level TRACE
+登录邮箱。。。
+Get_Mails_By_Num 2
+XX Get_MailSubject_By_Index 1
+XX Get_MailDate_By_Index  1
+
+-------------------------------------------
+# -*- coding: cp936 -*-
+'''
+Created on 2015-11-2
+
+@author: w00352098
+'''
+import poplib
+from email import parser
+import email
+import string
+
+class MailPOPLibrary(object):
+    '''
+                自定义Python测试库
+    '''
+
+    __version__ = '0.1'
+
+    # 定义测试库的范围，默认为‘Test Case’
+    ROBOT_LIBRARY_SCOPE = 'TEST SUITE'
+
+    # Robot Framework 会自动忽略以下划线开头的方法
+    def __init__(self):
+        self._host = None
+        self._username = None
+        self._password = None
+        self._messages = None
+        self._Num = None
+
+    def Set_MailPOP_Host(self,Host):
+        self._host = Host
+
+    def Set_MailPOP_UserName(self,Username):
+        self._username = Username
+
+    def Set_MailPOP_Password(self,Password):
+        self._password = Password
+
+    def Get_Mails_By_Num(self,UniNum):
+        Num = int(UniNum)
+        self._Num = Num
+        pop_conn = poplib.POP3_SSL(self._host)
+        pop_conn.user(self._username)
+        pop_conn.pass_(self._password)
+        ALLNum = len(pop_conn.list()[1]) + 1
+        self._messages = [pop_conn.retr(i) for i in range(ALLNum-Num, ALLNum)]
+        self._messages = ["\n".join(mssg[1]) for mssg in self._messages]
+        self._messages = [parser.Parser().parsestr(mssg) for mssg in self._messages]
+        pop_conn.quit()
+        
+    def Get_MailFrom_By_Index(self,UniIndex):
+        Index = int(UniIndex)
+        message = self._messages[self._Num-Index]
+        return email.utils.parseaddr(message.get('from'))[1]
+
+    def Get_MailTo_By_Index(self,UniIndex):
+        Index = int(UniIndex)
+        message = self._messages[self._Num-Index]
+        return email.utils.parseaddr(message.get('to'))[1]
+
+    def Get_MailSubject_By_Index(self,UniIndex):
+        Index = int(UniIndex)
+        message = self._messages[self._Num-Index]
+        subject = message.get('subject')
+        h = email.Header.Header(subject)  
+        dh = email.Header.decode_header(h)  
+        subject = unicode(dh[0][0], dh[0][1]).encode('utf-8')
+        return subject
+    
+    def Get_MailDate_By_Index(self,UniIndex):
+        Index = int(UniIndex)
+        message = self._messages[self._Num-Index]
+        return message["Date"]
+
