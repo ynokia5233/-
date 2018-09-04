@@ -1,0 +1,51 @@
+# -*- coding: cp936 -*-
+'''
+Created on 2016-09-21
+
+@author: w00352098
+'''
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
+
+class SMTPMail(object):
+    '''
+                自定义Python 邮件测试库
+    '''
+    __version__ = '0.1'
+
+    ROBOT_LIBRARY_SCOPE = 'TEST SUITE'
+    def __init__(self):
+        self._smtpserver = None
+        self._subject = None
+        self._username = None
+        self._password = None
+        self._sender = None
+        self._receiver = None
+        self._msg = None
+        
+    def Set_SMTPServer(self,smtpserver):
+        self._smtpserver = smtpserver
+        
+    def Set_MailSubject(self,subject):
+        self._subject = subject
+
+    def Set_UserNameAndPassword(self,UserName,Password):
+        self._username = UserName
+        self._password = Password
+
+    def Set_MailSenderAndReceiver(self,Sender,Receiver):
+        self._sender = Sender
+        self._receiver = Receiver
+
+    def Set_MailText(self,InText):
+        self._msg = MIMEText(InText,'plain','utf-8')
+
+    def Send_Mail(self):
+        self._msg['Subject'] = Header(self._subject,'utf-8')
+        smtp = smtplib.SMTP()
+        smtp.connect(self._smtpserver)
+        smtp.login(self._username,self._password)
+        smtp.sendmail(self._username,self._receiver,self._msg.as_string())
+        smtp.quit()
+        
