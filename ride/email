@@ -8,7 +8,15 @@ Set_MailSenderAndReceiver XX  XX
 Set_MailSubject  XX
 Set_MailText  XX
 Send_Mail
------------------------------------------
+
+我按照上面的操作，提示20170413 14:43:09.309 :  FAIL : SMTPServerDisconnected: Connection unexpectedly closed
+这个是什么原因呢
+赞(0)回复
+周毓海回复于 2018-03-06 16:13
+修改2个地方：
+1、Set_SMTPServer = 'smtp.huawei.com'
+2、smtp.sendmail(self._sender,self._receiver,self._msg.as_string())
+----------------------------------------------------------------------------------
 # -*- coding: cp936 -*-
 '''
 Created on 2016-09-21
