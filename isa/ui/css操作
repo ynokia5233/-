@@ -1,0 +1,29 @@
+ 类型 CSS 备注 
+ 
+ 标签
+ css=E	 所有E元素
+ 	 css=img	 所有图片元素
+ 	 css=E[A]	 带属性A的E元素
+ 	 css=E[A='t']	 属性A的值为t的E元素
+ 	 css=E[A*='t']	 属性A的值包括文本t的E元素
+ 	 css=E[A^='t']	 属性A的值以t开头的E元素
+ 	 css=E[A$='t']	 属性A的值以t结尾的E元素
+ 	 css=E[A~='w']	 属性A的值包括单词t的E元素
+ 	 css=E1#I1,E2#I2	 id为I1的E1元素或者id为I2的E2元素
+ 	 css=E1#I1,E1#I2	 id为I1或者I2的E1元素
+ 
+ 属性
+ css=E@A	 E元素的属性A
+ 	 css=*@A	 所有元素的属性A
+ 	 css=E[A2='t']@A1	 属性A2的值为t的E元素的属性A1
+ 	 css=E[A*='t']@A	 属性A的值包括t的E元素的属性A
+
+ID & Name
+ css=E#I	 id为I的E元素
+ 	 css=#I	 id为I的元素
+ 	 css=E[name=N]	 name为N的E元素
+ 	 css=[name=N]	 name为N的元素
+
+样式Class
+ css=.C	 带有C样式的元素
+ 	 css=E.C	 带有C样式的E元素
