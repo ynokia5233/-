@@ -1,0 +1,98 @@
+
+xpath元素定位 语法汇总  
+日期：2015-09-25 18:20 浏览：837 回复：12
+前天看到有些同学在xpath用text(), 我当时很惊讶，因为自己从来没用过，看来自己是见识少，于是补了一下相关知识！
+
+XPath是 XML路径语言，用来查询路径语言，用来查询 XML文档里中的节点。 主流的浏览器都支持Xpath,因 为HTML页面在DOM中表示为XHTML文档。
+
+Xpath语言是基于 语言是基于 语言是基于XML文档的树结构，并提供了浏览能力通过多样的标准来选择结点。
+
+ 
+
+1. 通过绝对路径定位元素, 如下内容
+
+xpath = html/body/div/form/input
+
+ 
+
+2. 通过相对路径定位元素, 如下内容
+
+xpath = //form/input
+
+ 
+
+3. 使用索引来定位元素, 如下内容
+
+xpath = //form/input[2]
+
+ 
+
+4. 使用 XPath及属性 值定位元素, 如下内容
+
+xpath = //input[@id='username']
+
+xpath = //img[@alt='Previous']
+
+xpath = //input[@type='submit'][@value='Login']
+
+xpath = //input[@type='submit' and @value='Login']
+
+xpath = //input[@type='submit' or @value='Login']
+
+ 
+
+5. 使用 XPath及属性名称定位元素, 如下内容
+
+xpath = //img[@alt]
+
+ 
+
+6. 部分属性值的匹配, 如下内容
+
+xpath =//input[starts-with(@id,'ctid')]
+
+xpath =//input[ends-with(@id,'ctid')]
+
+xpath =//input[contains(@id,'ctid')]
+
+ 
+
+7. 使用值来匹配任意属性 及元素
+
+xpath =//input[@*='username']
+
+ 
+
+8. 借助于文档中元素与之间的关系来定位元素
+
+xpath =//td[text()='mytext']/ancestor::table
+
+xpath =//table/descendant::td/input
+
+xpath =//td[text()='mytext']/following::tr
+
+xpath =//td[text()='mytext']/following-sibling::td
+
+xpath =//td[text()='mytext']/preceding::tr
+
+xpath =//td[text()='mytext']/preceding-sibling::td
+
+ 
+
+9. 使用 XPath的 text函
+
+xpath =//td[text()='mytext']
+
+ 
+
+10. 使用XPath精确文本定位元素
+
+xpath =//td[.='Item 1']
+
+ 
+
+11.contains和text()组合使用，根据文字内容进行元素匹配
+
+Xpath=//a[contains(text(),"文字内容"]
+
+ 
