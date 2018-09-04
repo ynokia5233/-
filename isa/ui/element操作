@@ -1,0 +1,55 @@
+
+Execute Javascript 元素操作汇总  
+日期：2015-09-19 14:43 浏览：466 回复：15
+在自动化测试脚本编写的过程中，往往会出现一些元素无法操作的情况，如：元素不可见，元素不可用，元素只读等情况，往碰到这些情况时，就需要我们通过javascript脚本来修改和设置元素的一些事件或属性。
+
+在对元素进行操作时，我们会通过javascript的document.getElementById('ElementID') 或者document.getElementByName('ElementName')来读取页面元素对象
+
+如果当前你要操作的元素没有ID,你也可以通过关键字设置，如下表：
+
+ Assign Id To Element	 //input[@value='保存']	 savebtn
+接下来列出一些常用操作：
+
+1. 设置输入框的值
+
+ Execute Javascript   
+ document.getElementById("savebtn").value = 'what your write'
+ 
+
+2. 设置元素为可见
+
+ Execute Javascript	 document.getElementById("savebtn").style.visibility='visible' 
+ Execute Javascript	 document.getElementById("savebtn").style.display='block'
+ 
+
+3. 设置元素为不可见
+
+ Execute Javascript	 document.getElementById("savebtn").style.visibility='hidden'
+ Execute Javascript	 document.getElementById("savebtn").style.display='none'
+ 
+
+4. 移除元素属性
+
+ Execute Javascript      
+ document.getElementById("savebtn").removeAttribute("onmouseon")
+ Execute Javascript	 document.getElementById("savebtn").removeAttribute("onmouseout")
+ Execute Javascript	 document.getElementById("savebtn").removeAttribute("class")
+ 
+
+5. 设置输入框元素的属性值
+
+ Execute Javascript     
+ document.getElementById("savebtn").setAttribute("readonly","true")
+ Execute Javascript	 document.getElementById("savebtn").readOnly = true
+ 
+
+6. 执行页面javascript脚本中的方法
+
+ Execute Javascript	 logOut()                                                                                    
+ 
+
+7. 执行元素上的某个事件方法，如click事件
+
+ Execute Javascript	 document.getElementById("savebtn").click()                              
+
+标签： 自动化测试Javascript	分类：AutobotsTester
