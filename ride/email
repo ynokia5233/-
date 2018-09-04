@@ -1,3 +1,14 @@
+ride 中使用距离
+导入SMTPMail
+
+case:
+Set_SMTPServer  XX
+Set_UserNameAndPassword  XX  XX
+Set_MailSenderAndReceiver XX  XX
+Set_MailSubject  XX
+Set_MailText  XX
+Send_Mail
+-----------------------------------------
 # -*- coding: cp936 -*-
 '''
 Created on 2016-09-21
