@@ -1,0 +1,15 @@
+list 使用注意事项  
+日期：2015-09-16 09:12 浏览：125 回复：15
+list列表, 在脚本处理过程中怎么使用！
+
+1. 在suit中创建一个list, @{list}
+
+2. 脚本代码中创建一个${list}, 使用Collections模块下的关键字：Create List
+
+3. 向${list}中添加元素，使用Collections模块下的关键字：Append To List
+
+4. 从${list}中删除元素，使用Collections模块下的关键字：根据索引移除：Remove From List ，或者根据值移除：Remove Values From List
+
+5. 给关键字传递一个list参数，参数只能写${list}格式，不能写@{list}格式
+
+6. :FOR IN 循环读取一个${list}, IN 后面的参数只能写@{list}格式，不能写${list}格式
