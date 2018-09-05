@@ -1,0 +1,130 @@
+<table width="100%" style="width:100%;" border="1" bordercolor="#000000" cellpadding="2" cellspacing="0"><tbody><tr><td style="font-weight:bold;">&nbsp;序号</td>
+<td style="text-align:center;font-weight:bold;">&nbsp;语法</td>
+<td style="text-align:center;font-weight:bold;">说明 <br>
+</td>
+<td style="text-align:center;font-weight:bold;">&nbsp;表达式实例</td>
+<td style="text-align:center;font-weight:bold;">完全匹配的字符串 <br>
+</td>
+</tr>
+<tr><td style="text-align:center;" colspan="5">&nbsp;<span style="color:#e53333;font-weight:bold;">字符</span></td>
+</tr>
+<tr><td>&nbsp;1</td>
+<td>&nbsp;一般字符</td>
+<td>&nbsp;匹配自身</td>
+<td>&nbsp;abc</td>
+<td>&nbsp;abc</td>
+</tr>
+<tr><td>&nbsp;2</td>
+<td>&nbsp;.<br>
+</td>
+<td>&nbsp;匹配任意除换行符”\n“以外的字符<br>
+</td>
+<td>&nbsp;a.c</td>
+<td>&nbsp;abc</td>
+</tr>
+<tr><td>&nbsp;3</td>
+<td>&nbsp;\</td>
+<td>&nbsp;转义字符，使它后面的一个字符保持原来的意思<br>
+</td>
+<td>&nbsp;a\.c</td>
+<td>&nbsp;a.c</td>
+</tr>
+<tr><td>&nbsp;4</td>
+<td>&nbsp;[...]</td>
+<td>&nbsp;字符集，以应的...可以是任意字符，可以一个一个列出也可以给出范围，如[abcd]或[a-d],如果第一个字符是^,表示取反，如果[^abc]表示不是abc的其它字符。<br>
+</td>
+<td>&nbsp;a[abc]d</td>
+<td><p>&nbsp;aac</p>
+<p>&nbsp;abc</p>
+<p>&nbsp;acc</p>
+</td>
+</tr>
+<tr><td style="text-align:center;" colspan="5"><span style="font-weight:bold;color:#e53333;">预定义字符集（可以写在字符集[...]中）</span><br>
+</td>
+</tr>
+<tr><td>&nbsp;5</td>
+<td>&nbsp;\d</td>
+<td>&nbsp;数字：[0-9]<br>
+</td>
+<td>&nbsp;a\dc</td>
+<td>&nbsp;a1c&nbsp;&nbsp; <br>
+</td>
+</tr>
+<tr><td>&nbsp;6</td>
+<td>&nbsp;\D</td>
+<td>&nbsp;非数字：[^\d]</td>
+<td>&nbsp;a\Dc</td>
+<td>&nbsp;abc <br>
+</td>
+</tr>
+<tr><td>&nbsp;7</td>
+<td>&nbsp;\s</td>
+<td>&nbsp;空白字符：[&lt;空格&gt;\t\r\n\f\v]</td>
+<td>&nbsp;a\sc</td>
+<td>&nbsp;a c<br>
+</td>
+</tr>
+<tr><td>&nbsp;8</td>
+<td>&nbsp;\S</td>
+<td>&nbsp;非空白字符：[^\s]</td>
+<td>&nbsp;a\Sc</td>
+<td>&nbsp;abc</td>
+</tr>
+<tr><td>&nbsp;9</td>
+<td>&nbsp;\w</td>
+<td>&nbsp;单词字符：[A-Za-z0-9_]</td>
+<td>&nbsp;a\wc</td>
+<td>&nbsp;abc</td>
+</tr>
+<tr><td>&nbsp;10</td>
+<td>&nbsp;\W</td>
+<td>&nbsp;非单词字符：[^\w]</td>
+<td>&nbsp;a\Wc</td>
+<td>&nbsp;a c<br>
+</td>
+</tr>
+<tr><td style="text-align:center;" colspan="5"><span style="font-weight:bold;color:#e53333;">数量词（用在字符或(...)之后）</span> <br>
+</td>
+</tr>
+<tr><td>&nbsp;11</td>
+<td>&nbsp;*</td>
+<td>&nbsp;匹配前一个字符0或无限次</td>
+<td>&nbsp;abc*</td>
+<td><p>&nbsp;ab</p>
+<p>&nbsp;abccc</p>
+</td>
+</tr>
+<tr><td>&nbsp;12</td>
+<td>&nbsp;+</td>
+<td>&nbsp;匹配前一个字符1或无限次</td>
+<td>&nbsp;abc+</td>
+<td><p>&nbsp;abc</p>
+<p>&nbsp;abccc</p>
+</td>
+</tr>
+<tr><td>&nbsp;13</td>
+<td>&nbsp;?</td>
+<td>&nbsp;匹配前一个字符0或1次</td>
+<td>&nbsp;abc?</td>
+<td><p>&nbsp;ab</p>
+<p>&nbsp;abc</p>
+</td>
+</tr>
+<tr><td>&nbsp;14</td>
+<td>&nbsp;{m}</td>
+<td>&nbsp;匹配前一个字符m次</td>
+<td>&nbsp;ab{2}c</td>
+<td>&nbsp;abbc</td>
+</tr>
+<tr><td>&nbsp;15</td>
+<td>&nbsp;{m,n}</td>
+<td><p>&nbsp;匹配前一个字符m到n次. </p>
+<p>&nbsp;m和n可以省略其中一个，省略m，则匹配0至n次;若省略n，则匹配m至无限次</p>
+</td>
+<td>&nbsp;ab{1,2}c</td>
+<td><p>&nbsp;abc</p>
+<p>&nbsp;abbc</p>
+</td>
+</tr>
+</tbody>
+</table>
