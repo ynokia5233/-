@@ -1,0 +1,1271 @@
+性能测试分析软件汇总
+日期：2018-01-15 10:33浏览：346评论：0
+本文共包含：商业性能测试、监控、分析工具和免费、开源性能测试监控分析工具；共涉及java、php、net等各种开发语言平台，有系统性能分析、文件系统分析、微博、系统分析、数据性能分析等各种工具，可以说本文包含了现有的所有的性能测试监控分析工具工具133种。
+
+ 
+
+Java程序性能分析工具 VisualVM
+VisualVM是一个集成多个JDK命令行工具的可视化工具。可以作为Java应用程序性能分析和运行监控的工具。开发人员可以利用它来监控、分析线程信息，浏览内存堆数据。系统管理员可以利用它来监测、控制Java应用程序横跨整个网络的情况。Java应用程序使用人员可以利用它来创建包含所有必要信息的Bug 报告。
+
+压力测试和评测工具 Siege
+Siege是一个压力测试和评测工具，设计用于WEB开发这评估应用在压力下的承受能力：可以根据配置对一个WEB站点进行多用户的并发访问，记录每个用户所有请求过程的相应时间，并在一定数量的并发访问下重复进行。
+
+测试实例：
+
+Ben: $ siege -u shemp.whoohoo.com/Admin.jsp -d1 -r10 -c25
+ ..Siege 2.65 2006/05/11 23:42:16
+ ..Preparing 25 concurrent users for battle.
+ The server is now under siege...done
+ Transactions:                    250 hits
+ Elapsed time:                  14.67 secs
+ Data transferred:             448000 bytes
+ Response time:                  0.43 secs
+ Transaction rate:              17.04 trans/sec
+ Throughput:                 30538.51 bytes/sec
+ Concurrency:                    7.38
+ Status code 200:                 250
+ Successful transactions:         250
+ Failed transactions:               0
+手机网站性能测试工具 Mobitest
+Mobitest 是一个移动 App 用来在真实手机上测试手机 Web 网站性能。目前提供 android 和 ios 版本。
+
+获取源码的方式：http://code.google.com/p/mobitest-agent/source/checkout
+
+压力测试工具 Tsung
+Tsung 是一个压力测试工具，可以测试包括HTTP, WebDAV, PostgreSQL, MySQL, LDAP, and XMPP/Jabber等服务器。针对 HTTP 测试，Tsung 支持 HTTP 1.0/1.1 ，包含一个代理模式的会话记录、支持 GET、POST 和 PUT 以及 DELETE 方法，支持 Cookie 和基本的 WWW 认证，同时还支持 SSL。
+
+Phoronix Test Suite
+phoronix.com 是业内一个知名的网站，其经常发布硬件性能测评以及 Linux 系统相关的性能测评， Phoronix Test Suite 为该网站旗下的 linux 平台测试套件 , Phoronix 测试套件遵循GNU GPLv3协议。phoronix.com 刚刚发布了最新版的 Phoronix 测试套件——Phoronix　Test Suite 0.7.0。Phoronix　Test Suite 0.7.0　的发布时间离上一个版发布也就一个周左右的时间,然而新版本包含了多达40项的重大变化。
+
+Phoronix　Test Suite 默认是通过命令行来的进行测试的，但也可以调用GUI，Phoronix　Test Suite 还提供了上传测试结果的服务，也就说你可以把你的测试结果上传在网上，从而可以和别的 Linux 用户测出来的结果进行对比。
+
+分布式TCP压力测试工具 tcpcopy
+tcpcopy是一种应用请求复制（基于tcp的packets）工具，其应用领域较广，我们曾经应用于网易的广告投放系统，urs系统，nginx hmux协议开发等系统，避免了上线带来的很多问题。
+
+总体说来，tcpcopy主要有如下功能：
+
+1）分布式压力测试工具，利用在线数据，可以测试系统能够承受的压力大小（远比ab压力测试工具真实地多）,也可以提前发现一些bug
+2）对于后端的短连接，请求丢失率非常低(1/10万)，可以应用于热备份
+3）普通上线测试，可以发现新系统是否稳定，提前发现上线过程中会出现的诸多问题，让开发者有信心上线
+4）对比试验，同样请求，针对不同或不同版本程序，可以做性能对比等试验
+5）利用多种手段，构造无限在线压力，满足中小网站压力测试要求
+6）实战演习（架构师必备）
+
+tcpcopy可以用于实时和离线回放领域，并且tcpcopy支持mysql协议的复制，开源一年以来，功能上越来越完善。
+
+如果你对上线没有信心，如果你的单元测试不够充分，如果你对新系统不够有把握，如果你对未来的请求压力无法预测，tcpcopy可以帮助你解决上述难题。
+
+web性能测试工具 OpenSTA
+OpenSTA是一个免费的、开放源代码的web性能测试工具，能录制功能非常强大的脚本过程，执行性能测试。例如虚拟多个不同的用户同时登陆被测试网站。
+
+OpenSTA 是专用于B/S结构的、免费的性能测试工具。它的优点除了免费、源代码开放的优点外，还能对录制的测试脚本进行,按指定的语法进行编辑。在录制完测试脚本后，可以对测试脚本进行编辑，以便进行特定的性能指标分析。其较为丰富的图形化测试结果大大提高了测试报告的可阅读性。
+
+OpenSTA 基于CORBA 的结构体系，它通过虚拟一个proxy，使用其专用的脚本控制语言，记录通过proxy 的一切HTTP/S traffic。通过分析OpenSTA 的性能指标收集器收集的各项性能指标，以及HTTP 数据，对系统的性能进行分析。
+
+优点：压力测试引擎具有可扩充性，可以完成打规模的压力测试。提供脚本语言支持。
+
+memcached性能测试 twemperf
+twemperf 是一个用来测试 memcached 服务器性能的工具。
+
+测试实例：
+
+$ mcperf --linger=0 --timeout=5 --conn-rate=1000 --call-rate=1000 --num-calls=10 --num-conns=1000 --sizes=u1,16
+
+Total: connections 1000 requests 10000 responses 10000 test-duration 1.009 s
+
+Connection rate: 991.1 conn/s (1.0 ms/conn <= 23 concurrent connections)
+Connection time [ms]: avg 10.3 min 10.1 max 14.1 stddev 0.1
+Connect time [ms]: avg 0.2 min 0.1 max 0.8 stddev 0.0
+
+Request rate: 9910.5 req/s (0.1 ms/req)
+Request size [B]: avg 35.9 min 28.0 max 44.0 stddev 4.8
+
+Response rate: 9910.5 rsp/s (0.1 ms/rsp)
+Response size [B]: avg 8.0 min 8.0 max 8.0 stddev 0.0
+Response time [ms]: avg 0.2 min 0.1 max 13.4 stddev 0.00
+Response time [ms]: p25 1.0 p50 1.0 p75 1.0
+Response time [ms]: p95 1.0 p99 1.0 p999 1.0
+Response type: stored 10000 not_stored 0 exists 0 not_found 0
+Response type: num 0 deleted 0 end 0 value 0
+Response type: error 0 client_error 0 server_error 0
+
+Errors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0
+Errors: fd-unavail 0 ftab-full 0 addrunavail 0 other 0
+
+CPU time [s]: user 0.64 system 0.35 (user 63.6% system 35.1% total 98.7%)
+Net I/O: bytes 428.7 KB rate 424.8 KB/s (3.5*10^6 bps)
+Web性能测试工具 AutoBench
+autobench 是一款基于httperf的Perl脚本。它会在一次测试中调用多次httperf来对web服务器进行测试，每次会按照给定的参数增加并发连接数，将 httperf的测试结果保存为CSV格式的文件，该文件可以被Excel直接读取，方便生成测试报告。借助于autobench自带的 bench2graph工具可以生成漂亮的测试结果对比图。
+
+使用方法：
+
+autobench --single_host --host1 www.test.com --uri1 /10K --quiet     \
+          --low_rate 20 --high_rate 200 --rate_step 20 --num_call 10 \
+          --num_conn 5000 --timeout 5 --file results.tsv
+
+MySQL压力测试工具 mysqlslap
+mysqlslap是一个mysql官方提供的压力测试工具。以下是比较重要的参数：
+–defaults-file，配置文件存放位置
+–concurrency，并发数
+–engines，引擎
+–iterations，迭代的实验次数
+–socket，socket文件位置
+
+自动测试：
+–auto-generate-sql，自动产生测试SQL
+–auto-generate-sql-load-type，测试SQL的类型。类型有mixed，update，write，key，read。
+–number-of-queries，执行的SQL总数量
+–number-int-cols，表内int列的数量
+–number-char-cols，表内char列的数量
+
+例如：
+shell>mysqlslap –defaults-file=/u01/mysql1/mysql/my.cnf –concurrency=50,100 –iterations=1 –number-int-cols=4 –auto-generate-sql –auto-generate-sql-load-type=write –engine=myisam –number-of-queries=200 -S/tmp/mysql1.sock
+Benchmark
+Running for engine myisam
+Average number of seconds to run all queries: 0.016 seconds
+Minimum number of seconds to run all queries: 0.016 seconds
+Maximum number of seconds to run all queries: 0.016 seconds
+Number of clients running queries: 50
+Average number of queries per client: 4
+
+Benchmark
+Running for engine myisam
+Average number of seconds to run all queries: 0.265 seconds
+Minimum number of seconds to run all queries: 0.265 seconds
+Maximum number of seconds to run all queries: 0.265 seconds
+Number of clients running queries: 100
+Average number of queries per client: 2
+
+指定数据库的测试：
+–create-schema，指定数据库名称
+–query，指定SQL语句，可以定位到某个包含SQL的文件
+
+例如：
+shell>mysqlslap –defaults-file=/u01/mysql1/mysql/my.cnf –concurrency=25,50 –iterations=1 –create-schema=test –query=/u01/test.sql -S/tmp/mysql1.sock
+Benchmark
+Average number of seconds to run all queries: 0.018 seconds
+Minimum number of seconds to run all queries: 0.018 seconds
+Maximum number of seconds to run all queries: 0.018 seconds
+Number of clients running queries: 25
+Average number of queries per client: 1
+
+Benchmark
+Average number of seconds to run all queries: 0.011 seconds
+Minimum number of seconds to run all queries: 0.011 seconds
+Maximum number of seconds to run all queries: 0.011 seconds
+Number of clients running queries: 50
+Average number of queries per client: 1
+
+NoSQL负载测试工具 VPork
+VPork 是一个用来对分布式哈希表(NoSQL) 进行负载测试的工具。
+
+示例测试结果：
+
+Mar 31, 2009 6:21:17 PM - Writes:
+Mar 31, 2009 6:21:17 PM -   Num Writes:           159855
+Mar 31, 2009 6:21:17 PM -   Write Failures:       0
+Mar 31, 2009 6:21:17 PM -   Write Latency:        85.94 ms
+Mar 31, 2009 6:21:19 PM -   Write Latency (%99):  319.00 ms
+Mar 31, 2009 6:21:19 PM -   Bytes Written:        3658.79 MB
+Mar 31, 2009 6:21:19 PM -   Thread w/Throughput:  0.27 KB / ms
+Mar 31, 2009 6:21:19 PM -   Total w/Throughput:   24.29 KB / ms
+Mar 31, 2009 6:21:19 PM - 
+Mar 31, 2009 6:21:19 PM - Reads:
+Mar 31, 2009 6:21:19 PM -   Num Read:             19872
+Mar 31, 2009 6:21:19 PM -   Read Failures:        0
+Mar 31, 2009 6:21:19 PM -   Read Latency:         70.36 ms
+Mar 31, 2009 6:21:19 PM -   Read Latency (%99):   298.00 ms
+Mar 31, 2009 6:21:19 PM -   Read Not Found:       12 (%0.06)
+Mar 31, 2009 6:21:19 PM -   Bytes Read:           453.94 MB
+Mar 31, 2009 6:21:19 PM -   Thread r/Throughput:  0.33 KB / ms
+Mar 31, 2009 6:21:19 PM -   Total r/Throughput:   3.01 KB / ms
+Java内存使用分析 HeapAnalyzer
+HeapAnalyzer 是 IBM 的一个用来分析 Java 程序的内存堆使用情况的图形化工具。
+
+网页优化插件 YSlow
+YSlow是yahoo美国开发的一个页面评分插件，非常的棒，从中我们可以看出我们页面上的很多不足，并且可以知道我们改怎么却改进和优化。
+
+YSlow跌评分规则。
+
+主要有12条：
+
+1. Make fewer HTTP requests 尽可能少的http请求。。我们有141个请求（其中15个JS请求，3个CSS请求，47个CSS background images请求），多的可怕。思考了下，为什么把这个三种请求过多列为对页面加载的重要不利因素呢，而过多的IMG请求并没有列为不利因素呢？
+
+发现原来这些请求都是可以避免的。
+
+15个JS和3个CSS完全可以通过特殊的办法进行合并（这个技术部已经帮我们解决了，实在是太感谢了，嘿嘿。），这样合并以后，一般情况下页面上只会出现一个JS和一个CSS（对JS的封装得有一定的要求）。
+
+但是47个CSS background images请求改怎么解决呢？为什么页面上的纯IMG请求时合理的，而CSS background images请求过多就是不利因素了呢。这个我想了很久，总算明白，原来是这样的：
+
+一般页面上的ICON，栏目背景啊， 图片按钮啊，我们都会用图片CSS背景来实现，而一般这个图片CSS背景用到的图片都是比较小的，所以完全可以把这些图片合并成一个相对比较大的图片，这 样页面上只会出现一个CSS background images请求，最多也就2-3个。后来仔细看了下雅虎美国的页面，他们的确也是这样做的，虽然这样做需要花一定的时间来有规则的合并这些ICON，栏 目背景，图片按钮，以方便CSS调用，但是这样做绝对是合算的，而且是有必要的，YSlow也是极力推荐的。
+
+2.Use a CDN 这 项我们的评分是F级，最低。说实在的，我刚开始什么是CDN都不知道。后来查了GOODLE才知道。CDN的全称是Content Delivery Network，即内容分发网络。其目的是通过在现有的Internet中增加一层新的网络架构，将网站的内容发布到最接近用户的网络”边缘”，使用户可 以就近取得所需的内容，解决Internet网络拥挤的状况，提高用户访问网站的响应速度。从技术上全面解决由于网络带宽小、用户访问量大、网点分布不均 等原因所造成的用户访问网站响应速度慢的问题。
+
+看来上述的解释后，基本上明白了 CDN是怎么回事，后来咨询了下中文站点SA，得知我们网站目前的确还没有做CDN的优化，但是据说我们有更加先进的技术来解决类似的问题（具体什么技术 那就保密了），但是毕竟CDN也是个相当不错的技术，所以在我们先进技术的基础上在做CDN优化，肯定比现在更好，嘿嘿。据说SA明年会做几个点的 CND。
+
+3. Add an Expires header 设置过期的HTTP Header.设置Expires Header可以将脚本, 样式表, 图片, Flash等缓存在浏览器的Cache中.
+
+其实我们网站也做了这个优化，至少图 片在这个上做过优化，但是没有做完全。我们的CSS和JS都还没有做过优化，倒是外部引入的一个广告JS做了，呵呵。其实设置过期的HTTP Header 更应该做在脚本, 样式表, Flash上.不过据说这个SA也是没有做的，但是有一定的风险，因为JS和CSS是有一定的逻辑，如果服务器端和客户端都存在缓存的话，万一出了什么问 题，对我们以后查找问题的所在和增加难度，不过我想两者中是可以权衡和并存的。
+
+4. Gzip components 对 我们的页面内容进行Gzip格式的压缩，Gzip格式是一种很普遍的压缩技术，几乎所有的浏览器都有解压Gzip格式的能力，而且它可以压缩的比例非常 大，一般压缩率为85%，就是说服务器端100K的页面可以压缩到25K左右的Gzip格式的数据发给客户端，客户端收到Gzip格式的数据后自动解压缩 后显示页面。
+
+这点我们网站基本上是100%做到了，但是我们这项的评分并没有达到想象中的A级，原因是出在我们的外部链接，比如我们首页，有外部的广告投放JS，这个JS说拥有的网站是没有做过GZIP优化，连累了我们网站，所以我们也只有B，或者C级。
+
+5. Put CSS at the top 把CSS外部链接放到页面的顶部。
+
+其实这个原则我们一般都遵守的，如果 把CSS外部链接作为逻辑的一部分出现在页面头部以下，我个人觉得这个本身就是个错误。还好，我们的页面基本上都做到了，可是有些页面比如LIST页面， 还是出现了和逻辑挂钩的CSS链接，原因是为了解决一些本来就不合理的产品逻辑。所以，我们WEB前端工程师有义务杜绝这些不合理的产品逻辑破坏我们的页 面结果及页面加载速度，不能为了实现而实现。
+
+Groovy压力测试模块 GBench
+GBench 是 Groovy 的压力测试模块，提供 @Benchmark / Benchmark AST Transformation 用于实际程序测试以及 BenchmarkBuilder 用于微测试。
+
+你可以通过在 groovy 文件中增加下面一行代码即可，想起请看 Installation
+
+@Grab('com.googlecode.gbench:gbench:0.3.1-groovy-2.0') // v0.3.1 for Groovy 2.0
+@Benchmark 实例:
+
+import gbench.* class Task {     @Benchmark void run() {         // task     } } /* Output: Task  void run()  user:847000 system:1777000 cpu:2624000 real:4918000 */
+BenchmarkBuilder 实例:
+
+import gbench.* new BenchmarkBuilder().run {     'StringBuilder' {         def sb = new StringBuilder()                sb.append('foo')         sb.append('bar')         sb.append('baz')         sb.toString()     }     'StringBuffer' {         def sb = new StringBuffer()                sb.append('foo')         sb.append('bar')         sb.append('baz')         sb.toString()     } }.prettyPrint() /* Output: Environment =========== * Groovy: 2.0.0 * JVM: Java HotSpot(TM) 64-Bit Server VM (23.0-b15, Oracle Corporation)     * JRE: 1.7.0_04-ea     * Total Memory: 99.4375 MB     * Maximum Memory: 1169.8125 MB * OS: Mac OS X (10.7.3, amd64) Options ======= * Warm Up: Auto * CPU Time Measurement: On                user  system  cpu  real StringBuilder   236       0  236   237 StringBuffer    263       0  263   267 */
+Web服务性能测试工具 Pylot
+Pylot 是一款开源的用以测试 Web Service性能和扩展性的工具，它运行HTTP负载测试，这对于制定容量计划、确定基准点、分析系统瓶颈以及系统调优都非常有用。在使用过程 中，Pylot会发起并发请求（HTTP Requests），检验服务器响应，以及带有相关指标的报表。它通过GUI或者Shell/Console来执行和监视对被测试网站的测试过程。
+
+Pylot基于Python开发，和著名的Apache压力测试工具ab一样，默认在命令行运行，也可以通过参数触发GUI界面，当然前提是安装了wxPython的。
+
+改进网页设计的工具 Page Speed
+Page Speed最 初是Google内部使用的改进网页设计的工具——它整合在Firefox的著名插件Firebug中。当用户运行Page Speed，可以立即获得如何改进网页载入速度的建议。Page Speed能自动为用户优化图像，提供可以发布在网页上的压缩图片，它也能识别JavaScript和CSS载入问题，帮助开发者减少浏览者等待网页展示 的时间。
+
+Siege 配置生成工具 sproxy
+SPROXY 是 siege 代理服务器，用于收集 siege 的 URLs，只需配置浏览器使用 sproxy 服务器，即可自动收集 POST 数据和 GET 请求，并将这些数据生成 siege 要求的格式文件。
+
+Linux内核性能分析 OProfile
+OProfile是Linux内核支持的一种性能分析机制。
+
+它在时钟中断处理入口处建立监测点，记录被中断的上下文现场，由配套的用户态的工具oprof_start负责在用户态收集数据，opreport则分析数据并给出分析报告。
+
+通过这个工具，开发人员可以得知一个程序的瓶颈在哪里，进而指导代码优化。
+
+webload
+webload是RadView公司推出的一个性能测试和分析工具，它让web应用程序开发者自动执行压力测试；webload通过模拟真实用户的操作，生成压力负载来测试web的性能。
+
+压力测试工具 JMeter
+JMeter是Apache组织的开放源代码项目，它是功能和性能测试的工具，100%的用java实现。
+
+网站负载测试工具 Iago
+Iago 是一个网站负载测试工具，Iago 针对一个给定的网站进行访问录制并合成流量数据。它不同于其他的负载生成工具，它试图保持恒定的请求率。例如如果你想按每分钟100K来请求您的服务，Iago 会试图保持这个速度进行测试。
+
+SQL Profiler
+JDBC SQL Profiler 是一个用来连接到 P6Spy 实时显示所执行的SQL语句，并生成统计信息，利用该工具可以对SQL语句进行监控以找出执行缓慢的语句加以优化。
+
+Microsoft Web Application Stress Tool
+Microsoft Web Application Stress Tool 是由微软的网站测试人员所开发，专门用来进行实际网站压力测试的一套工具。透过这套功能强大的压力测试工具，您可以使用少量的Client端计算机仿真大 量用户上线对网站服务所可能造成的影响。
+
+Tomcat管理和性能监控 LambdaProbe
+LambdaProbe是一款 Tomcat 的管理以及性能测试的强大的免费开源工具，LambdaProbe拥有几乎所有Tomcat Manager的功能, 可以说是一个增强版本的 Tomcat Manager。
+
+更多监控界面截图>>
+
+在线演示>>
+
+Web 能力分析工具 WCAT
+Web 日志和历史流量分析可以让您深入了解会出现何种流量，但如何才能确定您基础结构的实际承载量呢？这时，您需要一种工具来使您的基础结构机器应用程序栈达到临界 点。免费的 Web 能力分析工具 (WCAT) 应运而生，它是一种轻量级负载生成实用工具，不仅能够重现对 Web 服务器（或负载平衡服务器场）的脚本 HTTP 请求，同时还可以收集性能统计数据供日后分析之用。而且它还支持 IPv6 网络。另外，WCAT 是多线程应用程序，并且支持从单个源控制多个负载测试客户端，因此您可以模拟数千个并发用户。
+
+该实用工具利用您的旧机器作为测试客户端，其中每个测试客户端又可以产生多个虚拟客户端（最大数量取决于客户端机器的网络适配器和其他硬件）。您可以选择使 用 HTTP 1.0 还是 HTTP 1.1 请求，以及是否使用 SSL。并且，如果测试方案需要，您还可以使用脚本执行的基本或 NTLM 身份验证来访问站点的受限部分。（如果您的站点使用 cookie、表单或基于会话的身份验证，那您可以创建正确的 GET 或 POST 请求来对测试用户进行身份验证。）WCAT 还可管理您站点可能设置的任何 cookie，所以配置文件和会话信息将永久保存。
+
+WCAT can help you test the limits of your Web site infrastructure  (单 击该图像获得较大视图)
+
+WCAT 还提供了非常出色的用户指南，该指南可以帮助快速创建 Microsoft® .NET Framework 控制台应用程序，它可以根据来自站点流量审计历史的用户流量数据生成测试客户端脚本，并能在部署前于新代码库中模拟真正的流量。而且，如果您的同事中有 C 程序员，那您还可以创建自定义函数和响应处理程序，供方案文件调用以便为环境量身定制功能。
+
+要 使用 WCAT，您需要配置两个文件：一个包含通用测试设置（如客户端数量、每个客户端上的虚拟客户端数量、用于跟踪的性能计数器和测试需要的 Web 服务器）的控制器文件，以及一个包含测试方案、默认请求参数和自定义函数和库引用的方案文件。
+
+该 应用程序将测试结果记录到 XML 文件，您可以应用内置的 XSL 样式表单在 Internet Explorer® 中查看到组织好的结果表格。该报告包含摘要信息，如执行的事务数量、上下文切换次数、CPU 利用率百分比（所有 CPU），以及遇到的错误总数等。您还可以得到在设置文件中配置的性能计数器的结果（参见屏幕快照示例）、响应时间分析、以事务为单位的统计报告、以客户 端为单位的明细数据，以及有关如何配置测试设置的信息。另外，您将查看到您所测试的远程 Web 服务器的硬件配置，以及已安装的所有更新的列表。该列表能够很好地帮助您确定并跟踪某个补丁程序是否会对您的站点产生性能影响。
+
+综 上所述，如果您负责管理 Web 站点基础结构，那 WCAT 实用工具可以帮助您在下一次大型代码发布之前深入了解您的平台在压力测试下的工作情况。
+
+其最新版本（撰写本文时为 6.3.1 版）支持 x86 和 x64 Windows 系统
+
+x86：iis.net/downloads/1466/ItemPermaLink.ashx
+x64：iis.net/downloads/1467/ItemPermaLink.ashx
+
+网站压力测试工具 Webbench
+Webbench是有名的网站压力测试工具，它是由 Lionbridge公司（http://www.lionbridge.com）开发。
+
+Webbech能测试处在相同硬件上，不同服务的性能以及不同硬件上同一个服务的运行状况。webBech的标准测试可以向我们展示服务器的 两项 内容：每秒钟相应请求数和每秒钟传输数据量。webbench不但能具有便准静态页面的测试能力，还能对动态页面（ASP,PHP,JAVA,CGI）进 行测试的能力。还有就是他支持对含有SSL的安全网站例如电子商务网站进行静态或动态的性能测试。
+
+二、Freebsd 上安装 webbench
+
+(1) 在FreeBSD下的用Ports安装方法：
+
+#cd  /usr/ports/benchmarks/webbench
+#make install clean
+记得安装成功以后运行一下rehash命令，刷新一下系统命令
+
+#rehash
+二、webbench使用
+
+#webbench -? (查看命令帮助)
+
+常用参数 说明，-c 表示客户端数，-t 表示时间
+
+测试实例：
+
+#webbench -c 500  -t  30   http://127.0.0.1/phpionfo.php
+测试静态图片
+
+#webbench -c 500 -t 30 http://127.0.0.1/test.jpg
+
+四、webbench测试结果
+
+Webbench – Simple Web Benchmark 1.5
+Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
+
+Benchmarking: GET http://127.0.0.1/phpionfo.php
+500 clients, running 30 sec.
+
+Speed=3230 pages/min, 11614212 bytes/sec.
+Requests: 1615 susceed, 0 failed.
+分析：每秒钟响应请求数：3230 pages/min，每秒钟传输数据量11614212 bytes/sec.
+
+Ubuntu 下安装使用
+1、安装依赖包CTAGS
+
+apt-get install ctags
+2、安装 Webbench
+
+下载程序： webbench-1.5.tar.gz
+
+wget  http://tmublr.com/_media/blog/webbench-1.5.tar.gz
+make 
+sudo make install
+Spring Insight
+Spring Insight 是一项可以让你深入应用运行时刻，以可视化的方式查看应用的性能和行为：
+
+See the SQL executed for any page request
+Find pages which are executing slowly and drill into the cause
+Verify your application's transactions are working as designed
+Screencasts
+PHP性能测试工具 xhprof
+xhprof —— facebook 开发的一个测试php性能的扩展。
+
+负载测试工具 LoadRunner
+LoadRunner 是一种预测系统行为和性能的负载测试工具。通过以模拟上千万用户实施并发负载及实时性能监测的方式来确认和查找问题，LoadRunner 能够对整个企业架构进行测试。通过使用LoadRunner ，企业能最大限度地缩短测试时间，优化性能和加速应用系统的发布周期。
+
+下载试用版
+
+负载测试框架 Grinder
+Grinder是一个负载测试框架，通过Jython来编写测试脚本，基于HTTP的测试可以由浏览器来记录整个要测试的过程。
+
+关键特性：
+
+泛型测试方法
+灵活的测试脚本编写
+分布式框架
+成熟的HTTP支持
+Java剖析工具 JProfiler
+JProfiler 是一个商业的主要用于检查和跟踪系统（限于Java开发的）的性能的工具。JProfiler可以通过时时的监控系统的内存使用情况，随时监视垃圾回收，线程运行状况等手段，从而很好的监视JVM运行情况及其性能。
+
+JProfiler 是一个全功能的Java剖析工具（profiler），专用于分析J2SE和J2EE应用程序。它把CPU、执行绪和内存的剖析组合在一个强大的应用中。 JProfiler可提供许多IDE整合和应用服务器整合用途。JProfiler直觉式的GUI让你可以找到效能瓶颈、抓出内存漏失(memory leaks)、并解决执行绪的问题。它让你得以对heap walker作资源回收器的root analysis，可以轻易找出内存漏失；heap快照（snapshot）模式让未被参照（reference）的对象、稍微被参照的对象、或在终结（finalization）队列的对象都会被移除；整合精灵以便剖析浏览器的Java外挂功能。
+
+网站压力测试工具 ApacheBench
+ApacheBench 工具程式(ab)是 Apache 網站伺服器軟體的一個附帶的工具軟體，專門用來執行網站伺服器的運行效能，特別是針對 Apache 網站伺服器 的效能分析。這支程式原本是用來檢測 Apache 網站伺服器(Web Server) 所能夠提供的效能，特別是可以看出 Apache 網站伺服器能提供每秒能送出多少網頁，當然的，也可以用在任何其他的網站伺服器
+
+一般的使用方法：ab -c 并发数 -n 请求数 URL地址
+
+负载测试工具 loadUI
+loadUI 是一个企业级的负载测试工具，测试可分布式运行并可实时修改，与 soapUI 紧密集成，使用高度图形化接口，使得测试变得很简单而且运行迅速。
+
+Web测试和负载模拟工具 curl-loader
+curl-loader 是一个用C语言编写的Web应用测试和模拟负载工具，可模拟成千上万的客户端请求，并且每个请求来自不同的IP地址，支持用户认证、登录等Web交换过程。
+
+Chrome的Web性能分析扩展 Speed Tracer
+Speed Tracer是一款功能强大的Web性能分析扩展，可以对网页中的元素进行全方位的检测分析，找出你网页运行缓慢的罪魁祸首，以方便开发者优化代码，功能很强大。
+
+Speed Tracer 是能帮助您发现并解决网络应用程序中的性能问题。借助Speed Tracer，您可以更好地了解在应用程序中的哪些地方消耗了时间，并可以解决JavaScript语法分析和执行、CSS式样以及更 多方面的问题。
+
+.NET性能分析工具 SlimTune
+SlimTune 是一个 .NET 应用的分析和性能优化工具，提供很多诸如远程分析、实时结果、多插件支持的可视化界面。
+
+CPU性能测试工具 kernbench
+kernbench是CPU性能基准测试工具。它的设计比较在同一台机器，或比较硬的内核。它运行在内核编译兼职不同数量：1 / 2数量的CPU，优化（默认值是CPU的4xnumber）和最大工作计数。可选它也可以运行单线程。然后打印出的每一组的平均运行有用的统计数。
+
+Java代码质量评价 JDepend
+JDepend一个开放源代码的可以用来评价Java程序质量的优秀工具，它遍历Java class的文件目录，以Java包（package）为单位，为每一个包/类自动生成 包的依赖程度，稳定性，可靠度等的评价报告，根据这些报告，我们可以得到包或类之间的依赖关系，并分析出包的稳定程度，抽象程度，是否存在循环依耐关系 等。
+
+我们可以根据JDepend给出的报告数据，分析出我们的包是否是可靠的，稳定的，健壮的包，是否符合面向对象的设计原则。
+
+一个具有稳定性，扩展性，可维护性的软件系统要求系统设计遵循面向对象的设计原则。一般来说，面向对象的设计原则要求满足高聚合，低耦合，禁止循环依赖等基本原则。
+
+如果存在包与面向对象的设计原则有抵触，则有必要对这些包加以重新设计或抽象。
+
+JDepend的主要功能
+JDepend生成的Java包的质量评价报告主要包括：
+ Number of Classes and Interfaces：实现类与抽象接口的数目
+面向的设计原则之一The Stable Abstractions Principle (SAP)：稳定抽象等价原则指出了包的稳定程度与它的抽象程度（接口的数目）成正比，也就是说，一个包内包含的接口所占的比重越大，这个包就越稳定。
+ Abstractness (A)：包的抽象度。指一个包内包含的抽象类或接口占整个包中的类的比重。该值处于0，1之间，若A=0，说明包内不包含任何抽象类或接口；若A=1,说明包内全部是抽象类或接口。包的抽象度与稳定性之间的关系上面已经作了说明。
+ Afferent Couplings (Ca)：向心耦合。依赖该包（包含的类）的外部包（类）的数目（i.e. incoming dependencies），该数值越大，说明该包的担当的职责越大，也就越稳定。
+ Efferent Couplings (Ce)：离心耦合。被该包依赖的外部包的数目（i.e. outgoing dependencies），该数值越大，说明该包越不独立（因为依赖了别的包），也越不稳定。
+ Instability (I)：衡量一个包的不稳定程度。I=Ce/(Ce+Ca)。它的值处于[0，1]之间。I=0时说明包是最稳定的，反之I=1则说明包极不稳定。
+ Distance from the Main Sequence (D)： 该指标主要用来评价包的抽象程度与稳定程度的平衡关系，它可以用二维直线图 A + I = 1 来表示。D=abs((A + I) - 1)，也就是说D为 一个包的抽象度 + 包的不稳定程度 - 1  的绝对值。一个理想的包是：完全抽象的（A=1），非常稳定的（I=0），这时D=0；或者是：完全具体类构成的包（A=0），非常不稳定的 （I=1），这时同样也有D=0。D=0说明包的抽象程度与稳定程度是平衡的，反之D=1说明包的平衡程度被严重破坏。
+ Package Dependency Cycles：包的循环依赖度。
+面向对象的设计原则之一：The Acyclic Dependencies Principle (ADP) - OO设计的无环依赖原则要求包之间不能有循环依赖关系。
+
+JDepend为我们提供了上述许多高级功能，为我们设计健壮的包/类提供了重要的参考数据，是一个不可多得的优秀工具。
+
+性能监测和分析 Perf4J
+Perf4J 是一个新的开放源码的性能记录，监测和分析库，主要用于企业Java应用程序。与开发者们所熟悉的Java记录框架很相似，如log4j
+
+Perf4J的重点功能：
+
+一个简单的秒表计时机制，对timing进行简洁的声明。
+一个命令行工具用来分析日志文件，并生成汇总统计和性能图表
+易于与常见的记录框架和facades集成：log4j, java.util.logging, Apache Commons Logging和SLF4J。
+在运行时自定义log4j appender 产生统计数据和图表
+揭露性能统计，作为JMX的属性，并在统计超出指定值时发出通知
+一个控制器，在Web应用中揭露性能图表
+一个可扩展的框架
+JVM插件 JavaRebel
+JavaRebel （JRebel）是一个JVM的插件（非开源）,给Java带来了Ruby和PHP风格的动态重新装载类特性,JavaRebel允许一个应用程序（独立的或运行在应用服务器上的应用）重新装载在运行过程中（on the fly）发生的大多数类变化，包括增加或删除方法和域。
+
+javarebel 可以使Java class文件重新加载速度更快,节省了开发时间，而且修改了配置文件和在class中加入任何的代码都不用重启服务器,完全支持Annotation reloading.(Annotation动态载入),当classes字节码文件重新载入的时，它会在触发寄存器**，允许使用自定义的方法去处理。
+
+•简化了安装。现在 Java 5 中安装 JavaRebel 只需要加上 "-noverify -javaagent:javarebel.jar" 到命令行中。
+
+•优化了性能。 此次版本关注了启动时间和后台 CPU 的使用率。一些用户报称启动应用服务器的时间比用之前版本快了 2-3 倍。
+
+•改善了兼容性。支持所有主流的容器和框架，在其他的之上也可能工作的很好。
+
+•扩展了对 Java 1.4　的支持。像 BEA Weblogic 8.X、Oracle OC 4J 9.x/10.X 和 Tomcat 4.x 也被支持。
+
+•支持使用反射。新加到类中的方法对可用 Java 5+ 反射 API 访问到。
+
+•修改了许多 Bug。此次版本更为稳定，对于所支持系统提供即拆即用。
+
+页面性能测试工具 Page Detailer Pro
+Page Detailer Pro 是 IBM alphaworks 提供的一个工具。它是一款用来记录浏览器 HTTP 请求的软件，它通过在客户端的 Windows 端口堆栈中插入探针（Probe）来获取记录浏览器发起的 HTTP 请求的各种类型的数据。
+
+图 1 是一个 Page Detailer 记录的截图。浅蓝色标注部分是后加的，由上图示可知：
+
+页面尺寸。这儿的页面尺寸只包含资源本身的尺寸，不包含 HTTP 头及其他协议栈的头尺寸。当然，PageDetailer 也提供总下载尺寸的数据。
+HTTP 请求数。
+单个资源下载时间。这整个条形代表单个资源下载的总时间，包含建立网络连接的时间，发送 HTTP 请求的时间，接收 HTTP 响应的时间，网路传输整个资源的时间。
+浏览器发出请求头到接收到响应头的时间。PageDetailer 只提供这个时间，但事实上网络**工具可以提供记录更细粒度的时间。比如：HTTP 请求的发送时间，等待服务器响应的时间，接受 HTTP 响应头的时间。由于在局域网里，接受发送头的时间极短，所以这个时间可以认为就是服务器的响应时间。在这个图示中，把所有蓝色条形代表的时间相加就是服务 器消耗的时间，去除重叠部分后才是服务器响应时间。注意，服务器消耗的时间不等于服务器响应的时间，这里也有一个并发度的问题。
+网络传输时间。只是有关浏览器从开始接收这个资源的内容到接受结束所化的时间。一般的来说，它就是资源尺寸 / 带宽。但如果服务器或浏览器是以流的方式处理这个资源的话，那它还包含浏览器或服务器的处理时间。
+浏览器渲染时间。在任意两个资源下载中的间隔时间就是浏览器的渲染时间。注意：即使是在资源下载是，浏览器也可能在进行渲染。不过这些消 耗，无法用间隔时间的方法判断。一般的来说，这部分时间是比较有限的并且倾向于忽略。
+资源下载之间没有重叠，这说明这些下载之间没有并发。
+资源下载之间有重叠，这说明这些下载之间有并发。
+那么并发度怎么计算？一个简化的方法就是：
+
+并发度 = 单个资源下载时间之和 / （页面下载时间 – 浏览器渲染时间）
+
+简化的前提是：
+
+在局域网内，网络延迟很低。
+服务器响应很快。
+服务器端，浏览器端没有流式处理，或很快
+当然，在这里只是介绍了一下计算并发度的原理。基于这个原理，可以编写相应的程序读取 PageDetailer 或其他网络**程序 （比如 WireShark） 的数据来自动计算并发度。
+
+性能测试工具 SysBench
+SysBench是一个模块化的、跨平台、多线程基准测试工具，主要用于评估测试各种不同系统参数下的数据库负载情况。它主要包括以下几种方式的测试：
+       1、cpu性能
+       2、磁盘io性能
+       3、调度程序性能
+       4、内存分配及传输速度 
+       5、POSIX线程性能
+       6、数据库性能(OLTP基准测试)     
+
+目前sysbench主要支持 MySQL,pgsql,oracle 这3种数据库。
+
+数据库压力测试工具 Super Smack
+Super-smack 是一个强大的广受赞誉的压力测试工具，支持MySQL和PostgreSQL。这个工具程序现在由 Tony Bourke 维护。
+
+安装
+Super-smack 现在是1.3版，源码下载地址如下：
+http://vegan.net/tony/supersmack/super-smack-1.3.tar.gz
+
+./configure—with-mysql—with-pgsql
+根据需要，可以只保留 MySQL 和 PostgreSQL 中的一个。如果你的 client library 安装在其他目录，你要指明它，例如：
+./configure—with-mysql=/opt/mysql
+然后
+make
+su
+make install
+
+PS. FreeBSD 下面有 ports 的，安装起来更方便。
+
+使用
+将程序提供的 smack 样本文件重新拷贝一份，然后编辑此文件，填入相应的连接信息，比如用户名、密码、端口和测试所用的数据库名。
+cp /usr/share/smacks/select-key.smack select-key-mysql.smack
+
+开始运行
+super-smack —d mysql select-key-mysql.smack 10 1000
+
+10 是连接客户的数目，每个客户有100次轮询。
+
+结果
+Query Barrel Report for client smacker1
+connect: max=66ms min=0ms avg= 66ms from 10 clients
+Query_type num_queries max_time min_time q_per_s
+select_index 20000 0 0 4360.61
+
+这表示 super-smack 运行了10个客户，客户连接最长时间为66毫秒，最短的则没有延迟，平均时间为62毫秒。Super-smack 总共执行了20000此查询，每个查询所花时间都小于1毫秒。整个测试期间，服务端平均每秒执行了4360.61次 select_index 型查询。
+
+另外，可以修改 smack文件中 相应的参数以符合你的测试要求。
+
+数据库性能测试工具 HammerOra
+HammerOra 工具是基于TCL(Tool Command Language)语言的数据库性能测试工具。首先HammerOra是一款负载测试工具;其次HammerOra目前支持Oracle, MySQL和HTTP应用(web应用); 然后HammerOra是开源的，框架有点类似于商业工具LoadRunner; 因为HammerOra是基于Tcl语言的，所以天生就是可移植的，可以运行于Windows平台和Linux平台。
+
+HammerOra内嵌了两套标准测试脚本 tpc-c and tpc-h，当然你也可以自己开发和扩充测试脚本，开发语言是Tcl。
+
+HammerOra包含叁个部分(这点有点类似于LoadRunner)创建测试脚本(打开build-in的tpc-c or tpc-h)然后可以进行调试;配置并创建虚拟用户，并设置虚拟用户的策略，比如持续时间，用户迭代，rumpup塬则等，然后控制场景运行;最后是监控 事物计数器。对应于LoadRunner分别是VUGen, Controller and Analysis
+
+HammerOra的工作塬理就是捕捉Oracle的trace文件，并生成相应的SQL脚本进行回放，所以对用户的场景模拟程度是非常高的。 HammerOra跟Oracle的接口是也是利用一个Tcl的package OraTcl来完成的。(之前我们在开发测试平台时，后台驱动Oracle数据库操作也是通过这个package来完成的;
+
+JavaScript性能测试 JSLitmus
+JSLitmus是款轻量级的工具，用来测试JavaScript执行性能情况，采用直观的API。
+
+测试实例
+
+http压力测试工具 httpsender
+httpsender是一款轻量级的http压力测试工具，由淘宝的测试工程师用Java语言开发完成。它可以指定并发连接数发送指定数目的请求，还可以自定义请求的header头。请求的URL支持通过正则表达式指定范围，同时也支持从文件随机或顺序读取。它还具备验证数据是否完整和错乱等较高级的功能。默认应用环境为Linux。
+
+【作者】邓悟 (dengwu@taobao.com)
+
+【基本功能】
+
+1. 指定并发连接数发送指定数目的请求
+
+httpsender -c 10 -n 10000 http://www.test.com/[0-9]/[0-9].jpg
+
+2. 自定义请求的header 头
+
+httpsender -c 10 -n 10000 http://127.0.0.1/ -h "Host:www.test.com" -h "Connection:close"
+
+3. 从文件中读取要请求的URL, "-r 1"指定随机发送，默认是顺序发送
+
+httpsender -c 1 -n 100 -f /tmp/myfile.log -r 1
+
+4. 发送请求时，设置http版本号是1.0,默认是1.1
+
+httpsender -c 1 -n 1 http://www.test.com -v 1.0
+
+5. 打印每一个请求后的响应header信息,默认不输出
+
+httpsender -c 1 -n 1 http://www.test.com -p
+
+6.  -d 指定打印输出的时间间隔为10秒
+
+httpsender -c 10 -n 10000 http://127.0.0.1/[0-100].jpg -h "Host:www.test.com" -r 1 -d 10
+
+7. 验证数据是否损坏或者是否发生错乱
+
+httpsender -c 1 -n 1 -f myfile.log -md5
+
+此功能的目的是验证服务器返回的内容数据是否完整
+
+使用者需要预先将被访问的URL的md5命名为该URL的文件名放到指定的文件中，如:myfile.log
+
+http://www.test.com/4b841ef580c2f8b0085885fcb7ef8072
+
+http://www.test.com/abc41ef5abfc2f8b0085885fcb7ef807
+
+验证时程序会自动根据返回的body内容计算md5值，然后和请求的URL文件名做比对，比对失败会打印输出。
+
+下载地址：
+
+http://dl.dbank.com/c0vxx27aa5
+
+压力测试工具 stress
+stress 是Unix类系统下的工作量和压力测试工具。它将对用户指定的CPU数量的I/O，内存和硬盘的负载并报告它检测到任何错误。它用于自动压力测试和调试系统组件失败的唯一或更经常负荷时。它可以运行在x86，ppc64的，和PPC 32 GNU / Linux的，Tru64的，SPARC Solaris的，和其他平台。
+
+使用示例：
+
+$ stress --cpu 2 --io 1 --vm 1 --vm-bytes 128M --timeout 10s --verbose
+   stress: info: [9372] dispatching hogs: 2 cpu, 1 io, 1 vm, 0 hdd
+   stress: dbug: [9372] (243) using backoff sleep of 12000us
+   stress: dbug: [9372] (262) setting timeout to 10s
+   stress: dbug: [9372] (285) --> hogcpu worker 9373 forked
+   stress: dbug: [9372] (305) --> hogio worker 9374 forked
+   stress: dbug: [9372] (325) --> hogvm worker 9375 forked
+   stress: dbug: [9372] (243) using backoff sleep of 3000us
+   stress: dbug: [9372] (262) setting timeout to 10s
+   stress: dbug: [9372] (285) --> hogcpu worker 9376 forked
+   stress: dbug: [9375] (466) hogvm worker malloced 134217728 bytes
+   stress: dbug: [9372] (382) <-- worker 9374 signalled normally
+   stress: dbug: [9372] (382) <-- worker 9373 signalled normally
+   stress: dbug: [9372] (382) <-- worker 9375 signalled normally
+   stress: dbug: [9372] (382) <-- worker 9376 signalled normally
+   stress: info: [9372] successful run completed in 10s
+.NET性能调试工具 DotTrace
+DotTrace Performance是.NET平台下常用的性能调试工具，能够帮助.Net开发者以最快的方式找到并移除性能上的瓶颈。
+
+DotCover 则是一个 Visual Studio 插件，简单易用，以帮助 .NET 开发人员确定单元测试中应覆盖的每个单行代码都确确实实地包含其中。它支持在 Visual Studio 2005、2008 或 2010 环境下工作，能够分析 .NET 框架和 Silverlight 应用程序的语句级代码覆盖。同时集成了 ReSharper 的单元测试工具集，突出显示单元测试未覆盖的代码，可以检测出覆盖任何特别代码位置的单元测试，生成基于 XML 的代码覆盖报告。
+
+数据库压力测试工具 JDBHammer
+JDBHammer 是一个数据库压力测试工具，它可以模拟指定数量的并发用户进行数据库查询操作并给出测试的结果报表。当前只支持 MySQL 数据库。
+
+Cuadro CPU Benchmark
+Cuadro CPU Benchmark 用来测试 CPU 的性能。Cuadro CPU基准措施通过数值找到一个解决方案，并测量了在直角二维热传导方程运行时CPU性能的坐标。该方案是一个垂直的不锈钢接受双方产生的热量和自然对流板模型。它发现在每一个时间步的温度分布这一系统矩阵。
+
+Web性能和负载测试工具 Multi-Mechanize
+Multi-Mechanize 是一个开源的Web性能和负载测试框架，可让你并发运行多个 Python 脚本来对网站或者Web服务进行压力测试。
+
+主要特性：
+
+支持各种 HTTP methods
+高级超链接和HTML表单支持
+支持 SSL
+自动处理 Cookies
+可设置HTTP头
+自动处理重定向
+支持代理
+支持 HTTP 认证
+下面是一些测试结果图表：
+
+性能分析工具 DTrace
+DTrace，也称为动态跟踪，是由 Sun™ 开发的一个用来在生产和试验性生产系统上找出系统瓶颈的工具。 在任何情况下它都不是一个调试工具， 而是一个实时系统分析寻找出性能及其他问题的工具。
+
+DTrace 是个特别好的分析工具，带有大量的帮助诊断系统问题的特性。 还可以使用预先写好的脚本利用它的功能。 用户也可以通过使用 DTrace D 语言创建他们自己定制的分析工具， 以满足特定的需求。
+
+性能分析工具 TProfiler
+TProfiler是一个可以在生产环境长期使用的性能分析工具.它同时支持剖析和采样两种方式,记录方法执行的时间和次数,生成方法热点 对象创建热点 线程状态分析等数据,为查找系统性能瓶颈提供数据支持.
+
+TProfiler在JVM启动时把时间采集程序注入到字节码中,整个过程无需修改应用源码.运行时会把数据写到日志文件,一般情况下每小时输出的日志小于50M.
+
+业界同类开源产品都不是针对大型Web应用设计的,对性能消耗较大不能长期使用,TProfiler解决了这个问题.目前TProfiler已应用于淘宝的核心Java前端系统.
+
+部署后低峰期对应用响应时间影响20% 高峰期对吞吐量大约有30%的降低(高峰期可以远程关闭此工具).
+
+.NET性能单元测试 NTime
+NTime 是一款用来测试 .NET 应用性能的单元测试工具，界面如下图所示：
+
+web压力测试工具 Httperf
+Httperf 是个web 服务器的性能测试工具，来自惠普公司。
+
+Httperf 提供了灵活的生成各种 HTTP 负载来测试服务器的性能，提供可靠、高性能的工具，支持 HTTP/1.1 和 SSL。
+
+Ruby的性能测试工具 RoadRunner
+RoadRunner是一个用ruby写的类似LoadRunner框架的性能测试工具
+
+LoadRunner?这个工具很多做过性能测试的朋友肯定都知道，里面有很多方便易用的方法，不过这些方法的实现不是重点，毕竟ruby的第三方 库的各种实现非常的多,ruby开发者的热情都很高
+
+RoadRunner实现的是LoadRunner的框架，
+
+既： init(){ } action(){ } end(){ }
+
+init存放初始化、登陆等操作，action可以不断的迭代执行，从而 产生持续不断的压力，end存放释放资源、退出等操作。
+
+外加一个虽然简单但直观的报表，之后的版本除了不断的完善RR的报告，提高和LR 的相似度之外，还会增加更多ruby特有的方法，丰富Rrhelper模块代码。
+
+RoadRunner更方便的地方在于,它不仅仅可以通 过日志来展示结果,还可以将结果存储到数据库中,大家可以看test目录中的pi_db.rb这个测试文件,之后就会很方便的通过读取数据库的测试记录, 来绘制测试报表.
+
+我觉得我在写数据库这块代码的时候比较让自己满意, 这块的设计是这样的:
+
+当你引用 RoadRunner这个gem时,如果你还在生成RoadRunner类的同时,给RoadRunner.new方法一个block,
+
+并 且这个block里面是一个ActiveRecord的数据库连接,
+
+而且这个数据库中没有 scenarios,transactions,records这三张表,
+
+则RoadRunner会自动创建这三张表,以及默认的字段,
+
+并且将测试的数据写入这三张表中.
+
+但要注意,如果已经有了这三张表,但字段和RR的要求不同,那就会导致写数据异常,需 要分库或者改名.
+
+JAMon
+JAMon（Java应用程序监视器)是一个免费的，简单，高性能，线程安全的Java API.它让开发者可以方便地监控软件。JAMon用来测定程序的性能瓶颈，程序与用户的互动性和程序的可量测性。JAMon收集概要的统计数据比如执行 时间(总的，平均的，最大的，最小的等)，并发程序请求等。JAMon把这些统计数据以报表的形式展示出来。
+
+XML数据库性能测试 TPoX
+TPoX 是一个应用级的基准XML数据库的基础上的金融应用方案。它是用来评价业绩的XML数据库系统，侧重于XQuery查询，使用SQL / XML的， XML的存储， XML索引， XML架构的支持， XML的更新采伐，并发和其他数据库方面的问题。
+
+可视化性能分析器 VPA
+Visual Performance Analyzer (VPA) 是一个Eclipse的插件，用来对应用程序进行性能分析的工具
+
+UseMon
+UseMon是一个开源实时性能检测代理工具，能够嵌入JVM提供监控程序运行能力，包括异步运行情况，只需要花费很小的代价，并且能够在生产环境中使用。UseMon提供了以下功能：
+
+1。查看JVM详细使用情况 
+2。测量程序反应时间 
+3。依赖分析 
+4。集群环境监控
+
+UseMon能够在任何高于1.4版本的JDK环境下运行，包括第三方JVMs。它能够自动嵌入EJBs，MDBs，和几乎所有的链接，或者能够 配置对应用中某些特定的组件进行跟踪（这一点很强）。独立的UseMon能够多点跟踪数据，并且能够在数据通过Hibernate插入核心存储之前对数据 进行分析。当运行在低运行和高网络支出环境中，UseMon能够用来监控生产环境中实时系统行为。UseMon已经在挪威的一家大电信公司Telenor 的繁重的任务加载生产环境中运行。
+
+负载测试软件 PureLoad
+PureLoad 一款负载测试软件，可以用于模拟大量的用户用户执行请求，以检测软件的负载性能，并能报告存在的性能问题和详细的统计数据，同样也支持基于Web的应用。通过动态模拟的执行对服务器的请求的应用程序数以千计的用户。
+使用PureLoad验证的性能和服务器应用和电信服务的稳定性。
+
+使用电驴下载
+
+HTTP响应时间监视工具 httppp
+httppp 是一个HTTP的网络响应时间的无源监视工具，使用在非侵入性的方式。基于libpcap和libqpcap开发。
+
+WEB服务器性能/压力测试工具 SuperWebBench
+SuperWebBench 是由webbench改进而来的一款简单易用的web性能测试工具.
+
+ 
+
+背景：
+
+webbench最多可以模拟3万个并发连接去测试网站的负载能力，个人感觉要比Apache自带的ab压力测试工具好，安装使用也特别方便。
+
+webbench是基于GPL授权协议的，我自然可以取得源码修改，然后作为superwebbench这个项目发布。
+
+ 
+
+简介：
+
+SuperWebBench 是由webbench改进而来的一款简单易用的web性能测试工具
+
+SuperWebBench 是依照GPL V2.0发布的
+
+SuperWebBench是遵循POSIX标准的C语言编写的程序
+
+ 
+
+主要改动如下:
+
+1、更正connect()服务器失败时，不能close()的bug
+
+2、使用多线程代替多进程，提供更高的效率
+
+3、自动资源限制检测和设置（线程数和打开文件数限制）
+
+4、测试时间到达后，快速关闭套接字，不用再等待服务器响应（在WAN的情况下，这会占用很多时间）
+
+5、加入了检测HTTP响应号的功能，这样就可以分辨HTTP是否返回了正确的信息（HTTP2XX）
+
+6、重新组织了下代码结构，使得阅读更方便
+
+ 
+
+安装：
+
+ 
+
+wget https://github.com/downloads/xutongle/SuperWebBench/superwebbench.tar.gz
+
+tar zxvf superwebbench.tar.gz
+
+cd superwebbench
+
+make && make install
+
+
+
+superwebbench -c 500 -t 30 http://127.0.0.1/test.jpg 
+
+参数说明：-c表示并发数，-t表示时间(秒)
+
+ 
+
+测试结果示例：
+
+ 
+
+ 
+
+SuperWebBench - Advanced Simple Web Benchmark 0.1
+
+Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
+
+Modified By Davelv 2011-11-03
+
+ 
+
+Benchmarking:GET http://127.0.0.1/test.jpg (using HTTP/1.1)
+
+ 
+
+500 clients, running 30 sec.
+
+ 
+
+Speed=5887 pages/sec, 1862058 bytes/sec.
+
+Requests: 0 ok, 176220 http error, 405 failed.
+
+ 
+
+示范：
+
+ 
+
+superwebbench  
+
+superwebbench [option]... URL 
+
+  -f|--force                      Don't wait for reply from server. 
+
+  -r|--reload                     Send reload request - Pragma: no-cache. 
+
+  -t|--time                 Run benchmark for seconds. Default 30. 
+
+  -p|--proxy        Use proxy server for request. 
+
+  -c|--clients                Run HTTP clients at once. Default one. 
+
+  -9|--http09                     Use HTTP/0.9 style requests. 
+
+  -1|--http10                     Use HTTP/1.0 protocol. 
+
+  -2|--http11                     Use HTTP/1.1 protocol. 
+
+  --get                           Use GET request method. 
+
+  --head                          Use HEAD request method. 
+
+  --options                       Use OPTIONS request method. 
+
+  --trace                         Use TRACE request method. 
+
+  -?|-h|--help                    This information. 
+
+  -V|--version                    Display program version.
+
+ 
+
+常见问题：
+
+ 
+
+ctags *.c
+
+/bin/sh: ctags: command not found
+
+make: [tags] 错误 127 (忽略)
+
+ 
+
+ok，是在centos下没自动安装ctags命令，于是yum install ctags，安装成功。
+
+web服务器的吞吐量与负载测试 http_load
+http_load 以并行复用的方式运行，用以测试web服务器的吞吐量与负载。但是它不同于大多数压力测试工具，它可以以一个单一的进程运行，一般不会把客户机搞死。可以可以测试HTTPS类的网站请求
+
+% ./http_load -rate 5 -seconds 10 urls
+49 fetches, 2 max parallel, 289884 bytes, in 10.0148 seconds
+5916 mean bytes/connection
+4.89274 fetches/sec, 28945.5 bytes/sec
+msecs/connect: 28.8932 mean, 44.243 max, 24.488 min
+msecs/first-response: 63.5362 mean, 81.624 max, 57.803 min
+HTTP response codes:
+  code 200 -- 49
+NetBeans Profiler
+NetBeans剖析器项目把JFluid（源自Sun实现室）剖析技术结合到NetBeans IDE中.随着Java程序的大小与复杂性的增长，并要保持程序性能的需求变得越来越因难，因此进行软件的剖析必将成为开发周期中自然的一部分。
+
+ 	 	 
+Selecting profiling task
+Windows XP	Profiling data snapshot
+Windows XP	HeapWalker tool
+Windows XP
+网站功能、性能测试工具 FunkLoad
+FunkLoad 是一个网站项目的功能、性能测试工具。
+
+CodePro Profiler
+CodePro Profiler，开发者可以使用该工具来检查应用的内存泄漏问题和性能问题。
+
+Web压力测试系统 nGrinder
+nGrinder是一个基于Grinder（http://grinder.sourceforge.net/）开发的一个非常易于管理和使用的性能测试系统。
+
+它是由一个controller和连接它的多个agent组成，用户可以通过web界面管理和控制测试，以及查看测试报告，controller会把测试分发到一个或多个agent去执行。用户可以设置使用多个进程和线程来并发的执行该脚本，而且在同一线程中，来重复不断的执行测试脚本，来模拟很多并发用户。
+
+nGrinder的测试是基于一个python的测试脚本，用户按照一定规则编写测试脚本以后，controller会将脚本以及需要的其他文件分发到agent，用Jython执行。并在执行过程中收集运行情况、响应时间、测试目标服务器的运行情况等。并保存这些数据生成运行报告，以供以后查看。
+
+nGrinder的一大特点就是非常容易使用，安装也非常容易，可以做到开箱即用，测试用户也可以很容易就开始测试任务。当然，如果想执行一些比较复杂场景的性能测试，就需要测试人员对python有一定认识。
+
+TAU
+TAU (Tuning and Analysis Utilities) 是一个用来分析C/C++、Fortran、Python和Java程序性能的工具。
+
+It collects much more information than is available through prof or gprof, the standard Unix utilities, including per-process, per-thread, and per-host information, inclusive and exclusive function times, profiling groups that allow you to organize data collection, access to hardware counters on some systems, per-class and per-instance information, the ability to separate data for each template instantiation, start/stop timers for profiling arbitrary sections of code, and support for collection of statistics on user-defined events.
+
+性能检测套件 Perfmon4j
+Perfmon4j是一个性能监测工具套件，可用于诊断和监测Java应用程序的性能瓶颈、吞吐量和响应时间。它的主要功能包括servlet响应的实时监控，详细线程跟踪采样，Java的仪器，使包，类，无需修改源代码和监测方法，系统参数的快照，包括垃圾收集，内存池等，一个API申请额外的 监测监控通过方法注解或在网上定时器点，并在动态运行的应用，使显示器的支持。
+
+Web Performance Load Tester
+Web Performance Load Tester 是一套商业的Web服务器测试工具。主要功能包括IP欺骗、客户端证书、多实例同步测试、Web认证、SSL、自动分析、Ajax支持、SOAP支持等。功能很强大，但是是收费软件。
+
+WEB应用负载测试工具 fwptt
+fwptt 是一个用来进行WEB应用负载测试的工具。它可以记录一般的请求，也可以记录Ajax请求。它可以用来测试 asp.net， jsp， php 或是其它的Web应用。
+
+HTTP 压力测试工具 wrk
+wrk 是一个比较先进的 HTTP 压力测试工具。
+
+测试方法：
+
+wrk -t8 -c400 -r10m http://localhost:8080/index.html
+输出结果：
+
+Making 10000000 requests to http://localhost:8080/index.html
+    8 threads and 400 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency   439.75us  350.49us   7.60ms   92.88%
+      Req/Sec    61.13k     8.26k   72.00k    87.54%
+    10000088 requests in 19.87s, 3.42GB read
+  Requests/sec: 503396.23
+  Transfer/sec:    176.16MB
+性能测试框架 Basher
+Basher 是一个轻量级的性能测试框架，用来帮助开发者编写诊断和性能测试。
+
+为Java提供运行时响应时间分析 jHiccup
+Azul System公司于12月13日宣称发布了开源工具jHiccup，设计该工具的目的是对与应用程序底层运行平台相关的暂停和延迟（或“hiccups”）做出度量。新工具的功能与Azul的 JitterMeter有部分重叠，但它为创建图形化的输出增加了基于Excel的工具。另外它还计划增加基于Java用于生成图表的工具。此外，想要针 对应用程序使用jHiccup也相当简单。你只需要在用来启动应用程序的java -c命令之前增加jHiccup即可。
+
+jHiccup会捕获运行时的响应时间，对其记录日志，并通过“Hiccup图”来显示。这个工具不会度量应用程序代码导致的延迟，而是会捕获由底 层运行时平台所导致的外部延迟，那会对所有在当时运行的应用程序产生影响。用来达到这种效果的技术非常简单： jHiccup会向应用程序增加一个线程，它会休眠1ms，然后唤醒，并查看距上次唤醒间隔了多长时间，如果超过1ms，那么就会在内部记录日志。这样， 你就拥有了最佳响应时间的基准。
+
+其中的一些“Hiccup图”会对你很有帮助。第一个图会显示出静默系统（quiet system）中的空闲应用（idle app）。图的顶部显示的是jHiccup系统所检测到的内容，并且会显示占整体运行的百分比。在下面，工具会提供更多详细的百分比样例，这是基于 10000点的样例。如果系统（而不是应用程序）繁忙，那么我们就会看到延迟的数量上升，因为调度程序会占用大部分应用程序的时间。
+
+下面的第二幅图显示的是真实的案例，来自于使用CMS collector运行在Hotspot的电信收费应用程序。通过与垃圾回收日志关联分析，我们可以知道在此显示的是主要和次要的垃圾回收事件。CMS是 一种分代的回收程序（generational collector），它会把对象隔离为新一代和旧一代，并优先收集新一代的对象。这个应用程序在电信收费程序中很典型，它对于新一代对象很难处理，因为 它需要跟踪大量只持续几秒钟就消失的会话。因此，大量新一代中的会话都会被回收。而更大的旧一代会话会造成暂停。
+
+jHiccup提供了一种很简单的方式，让你知道应该在什么地方进行优化，它会向你展示在应用程序本身有多少特定的性能问题，以及在其他地方——像Java虚拟机、操作系统、管理程序（如果用到的话）以及硬件——中有多少问题。它已经基于Creative Commons license开源。
+
+介绍内容来自：http://www.infoq.com/cn/news/2011/12/jHiccup
+
+EJP
+EJP(Extensible Java Profiler ) 开源的Java剖析工具,它使用一个可升级的,可扩展的体系结构.一个Java剖析工具是用来优化Java程序性能的开发工具,它帮助你找出并移除运行开 销大的部分.EJP基于JVMPI(Java Virtual Machine Profiler Interface )可用来监控Java应用程序一小部分的执行情况并把它用一些突出的元素在分层的树上表示出来.
+
+性能测试工具 CBenchmark
+CBenchmark—-CharlesCui’s Benchmark
+
+这是我实现的一款性能测试工具,之前在工作中常用LoadRunner之类的工具来完成性能测试,但受限于LR极其昂贵的Lisence以及难以定制的SDK,于是我用C/C++实现了这个工具,并借助Linux系统对线程和进程的良好调度,可以实现极高的并发压力.
+
+特点|Feature
+本程序和当前性能测试解决方案相比，
+可以实现极高的定制化:开放所有API,用户可以基于这些API实现自己的性能测试工具.
+无限制:本产品完全免费，不会像现有成熟解决方案一样基于并发数,或者基于使用协议的Lisense限制。
+高性能高并发:可提供比现有产品高出很多的并发能力,本程序使用C语言实现所有的代码。
+通用性:由于本产品测试用例的业务实现是由客户完成，所以本产品的作用不限于某种测试协议,所以本产品是一个通用的性能测试工具.
+执行过程可控:测试执行过程中用户可以通过Ctrl+C来控制本产品的执行。
+特有的测试用例加载模式:对测试用例加载的模式和市面上的性能测试产品都不一样，用户可以将CBenchmark当做第三方库编码进入测试代码,也可以将CBenchmark当做工具,在执行的时候动态加载测试代码以产生压力.
+本产品理论支持所有的服务端性能测试。
+对于非标准协议的性能测试，我推荐您使用本产品。
+
+Eclipse的性能分析插件 jMechanic
+jMechanic，一个分析Java程序的Eclipse插件。这个工具提供CPU Sampling和Heap Summary，进而让开发者调整程序的性能。
+
+Unix文件系统性能测试 Blogbench
+Blogbench 是一个便携的文件系统性能测试工具，用来模拟真实文件服务器的负载，通过模拟多线程的随机读写操作来进行压力测试。可用来测试文件系统的稳定性和对并发读写的支持能力。
+
+Cougaar Memory Profiler
+这个工具是用来调试在任何Java应用程序中的内存泄露和耗损. （不过在其首页上称此项目已经考虑要废弃了）
+
+性能测试框架 p-unit
+p-unit 是一款开放源码的性能测试框架，和 JUnit 不同，JUnit 关注的是测试案例的正确性，而 p-unit 不仅关注测试案例的正确性，还收集测试案例的性能参数，默认情况下，p-unit 收集测试案例的时间和内存消耗情况，可以产生文件，图片，和 PDF 格式的报表。此外，p-unit 还支持参数化测试，多线程测试以及不同 Java 虚拟机性能之间的比较。
+
+Web应用 性能和压力测试 Wapt
+开发一个全功能的和有用的Web应用程序是很繁琐的，测试Web应用程序更加繁琐。我们必须确保Web应用程序的工作也没有任何错误。我们必须确保Web应用程序在运行时（数百或数千人是在同一时间使用的）平稳。
+
+Wapt 是负载和压力测试工具，为您提供了一个易于使用的，一致的和符合成本效益的测试，Web服务器和内部网应用。
+
+性能和负载测试工具 Faban
+Faban 是Sun Microsystems 用纯粹的Java 1.5+ 编写的，而且在CDDL-1.0 许可下是开源的。Faban 似乎只关心各种类型服务器的基准调教，包括Web 服务器。Faban 是为高性能和紧凑调速而精心编写的，因此任何测量都与服务器的真实性能尽可能接近。例如，在没有运行其他Faban 代码时收集基准调速数据，而只在基准调校过程缔结之后才分析数据。要想获得最好的性能，则这是所有基准运行的惯用方法。
+
+Faban 还以Web 应用程序的形式提供了非常良好的配置与管理平台。为了服务于该控制平台(Web应用程序)，Faban自身现已整合到了Tomcat 的服务器中。Tomcat 是Faban 的一部分，任何对Tomcat 和基准调校都感兴趣的Java 开发者都能阅读Faban 的文档和源码，而且可选择性地参与Faban 的开发。如果您是一位Java 开发者，且正寻找最有特色、长期的调校解决方案，Faban 应该是您要用到的工具。
+
+ 
+
+相关链接
+
+项目主页：http://java.net/projects/faban/
+
+项目文档：http://www.opensparc.net/sunsource/faban/www/index.html
+
+Faban Quick Start Tutorial：http://www.testnscale.com/docs/QuickStartTutorial.html
+
+FProfiler
+FProfiler是一个非常快的Java profiler.它利用BCEL和log4j来记录每个方法从开始到结尾的日记.FProfiler可以用来在你的应用程序,Servlet,Applet...中找出hotspots.
+
+后端存储性能测试工具 Postmark
+Postmark 是由著名的 NAS 提供商 NetApp 开发，用来测试其产品的后端存储性能。 Postmark 主要用于测试文件系统在邮件系统或电子商务系统中性能，这类应用的特点是：需要频繁、大量地存取小文件。 Postmark 的测试原理是创建一个测试文件池。文件的数量和最大、最小长度可以设定，数据总量是一定的。创建完成后， Postmark 对文件池进行一系列的事务（ transaction ）操作，根据从实际应用中统计的结果，设定每一个事务包括一次创建或删除操作和一次读或添加操作，在有些情况下，文件系统的缓存策略可能对性能造成影响， Postmark 可以通过对创建 / 删除以及读 / 添加操作的比例进行修改来抵消这种影响。事务操作进行完毕后， Post 对文件池进行删除操作，并结束测试，输出结果。 Postmark 是用随机数来产生所操作文件的序号，从而使测试更加贴近于现实应用。输出结果中比较重要的输出数据包括测试总时间、每秒钟平均完成的事务数、在事务处理中平均每秒创建和删除的文件数，以及读和写的平均传输速度。
+
+全平台性能测试工具 Geekbench
+Geekbench是一款多平台的性能测试工具。与同类软件不同的是，它几乎可以运行在所有的已知PC架构系统上，包括了Windows、Mac OSX、以及各种Linux发行版。Geekbench的测试项目重点考察CPU和内存系统的运算能力，在测试完成后会给出具体得分供用户参考比对。
+
+WinRunner
+Mercury Interactive公司的WinRunner是一种企业级的功能测试工具，用于检测应用程序是否能够达到预期的功能及正常运行。通过自动录制、检测和 回放用户的应用操作，WinRunner能够有效地帮助测试人员对复杂的企业级应用的不同发布版进行测试，提高测试人员的工作效率和质量，确保跨平台的、 复杂的企业级应用无故障发布及长期稳定运行。
+
+性能测试工具 ContiPerf
+ContiPerf 是一个轻量级的测试工具能轻松地利用的JUnit 4的性能测试，测试案例，例如连续性能测试。它的灵感来自JUnit 4中与注释简单测试配置，以及用JUnitPerf的包装性能测试单元测试的想法，但更强大和更容易使用。它使用定义测试执行的特点和性能要求的Java注解。您可以标记一个测试运行一定次数，或将不断提出一定的时间执行。
+
+示例测试代码：
+
+  import org.junit.*; 
+  import org.databene.contiperf.*;
+
+  public class SmokeTest {
+
+      @Rule 
+      public ContiPerfRule i = new ContiPerfRule();
+
+      @Test 
+      @PerfTest(invocations = 5)
+      @Required(max = 1200, average = 250)
+      public void test1() throws Exception {
+          Thread.sleep(200);
+      }
+
+  }
+
+IronEye SQL
+IronEye SQL这个轻量级的Java工具提供所有流动在数据库与应用程序之间的SQL统计信息并用多张图表展现.IronEye SQL可以快速优化程序的性能.
+
+Memcached 性能测试工具 Brutis
+Brutis 是一个用 PHP 编写的 Memcached 性能测试工具。
+
+基准测试程序 Swingbench
+Swingbench是一个免费的负载生成器（和基准测试程序），用于对oracle数据库（10g,11g)进行压力测试.  这个软件是用Java开发的，因此可以在多种平台上运行，同时提供了一些扩展的API。 Swingbench可被用于验证或测试诸如实时应用集群、在线表格重建、在线备份和恢复等技术。Swingbench包含四种基准测试：  OrderEntry, SalesHistory, CallingCircle and StressTest.
+
+ 
+
+ 
+
+ASP性能分析工具 mvc-mini-profiler
+mvc-mini-profiler 是一个为 ASP.NET MVC 编写的小型的性能分析工具。
+
+JMP
+JMP是一个针对Java的剖析器.它被用来追踪对象的使用和计算method的运行时间.它利用JVMPI接口来收集统计信息并与JVM相结合.JMP使用一个GTK+接口来显示运行的状态.
+
+WEB应用压力测试工具 JCrawler
+JCrawler是一个开源的WEB应用压力测试工具。通过其名字，你就可以知道这是一个用Java写的像网页爬虫一样的工具。只要你给其几个URL，它就可以开始爬过去了，它用一 种特殊的方式来产生你WEB应用的负载。这个工具可以用来测试搜索引擎对你站点产生的负载。当然，其还有另一功能，你可以建立你的网站地图和再点击一下， 将自动提交Sitemap给前5名的搜索引擎！
+
+数据库性能测试工具 DBT
+DBT (Database Test Suite) 旨在创建一个数据库工作负载的测试工具，用于模拟高负荷下的 OLTP 数据库、OLAP 以及电商数据库事务系统下的性能表现。
+
+Java性能基准测试套件 SPECjvm2008
+SPECjvm2008是一个观测JRE运行性能的基准测试套件。它的测试用例涵盖了大部分java基础应用场景，是架构选型和VM性能评测不可多得的利器。
+
+SPECjvm2008测试用例列表：(单位 ops/m 每分钟操作数)
+http://docs.google.com/View?id=dtbhrmv_661cg8j92cm
+
+让你的JavaScript运行更快 JSpeed
+JSpeed engine analyzes different portions of your JS code for fragments which can be optimized, and substitutes them with faster code.
+
+文件系统性能测试工具 Filebench
+Filebench 是一款文件系统性能的自动化测试工具，它通过快速模拟真实应用服务器的负载来测试文件系统的性能。它不仅可以仿真文件系统微操作（如 copyfiles, createfiles, randomread, randomwrite ），而且可以仿真复杂的应用程序（如 varmail, fileserver, oltp, dss, webserver, webproxy ）。 Filebench 比较适合用来测试文件服务器性能，但同时也是一款负载自动生成工具，也可用于文件系统的性能。
+
+J2EE性能测试工具 JXInsight
+JXInsight 是一款对J2EE应用进行管理以及性能测试的商业工具软件，JXInsight 能够帮助你发现你的应用存在问题的地方, 比如某个方法调用了事务却关闭了JDBC连接, JXInsight能帮你自动发现。
+
+*J
+*J一个Java程序动态分析工具。这个工具包是为两个主要的目的服务：
+
+1.帮助收集Java程序动态执行数据 
+2.提供一个框架来快速简便地分析这些收集到的数据。
+
+前端网络（性能）监测工具 berserkJS
+berserkJS 是基于 Qt （C++跨平台库）开发的前端网络（性能）监测工具。 它的核心功能是通过内置 webkit 收集由页面实际网络请求相关数据。 偏重于页面上线前检测与评估。
+
+页面性能分析工具，可用 JS 编写自己的检测、分析规则。 基于 Qt 开发，可跨平台编译，部署。内置基于 QtWebkit 的浏览器环境。 源码需在目标系统中编译后，可产生运行于 Windows / Linux / Mac 系统的可执行文件。 工程中自带 Window 系统中动态编译的可执行文件，此文件位于 bulid 目录下。
+
+JMemProf
+JMemProf基于Web的内存剖析工具.JMemProf允许你撷取应用程序在运行时内存剖析信息.
+
+文件系统性能自动化测试工具 Bonnie++
+Bonnie++ 是一款文件系统的基准性能自动化测试工具，包括测试文件系统的读写能力、查找能力、创建新文件的能力，它通过一系列的简单测试来生成文件系统的性能参数。其主程序提供两种风格的测试：针对单个文件的数据库风格的访问测试和针对大量小文件的创建和删除来模拟诸如 Squid ， INN, 或者 Maildir 格式的 Email 这一类风格的访问测试。 Bonnie++ 对三个方面做基准测试：数据读、写速度，每秒可以完成的文件元数据操作次数。 Bonnie++ 12 项结果分为 5 大类，分别是 Sequential Output （写测试）， Sequential Input （读测试）， Random Seeks （读写测试）， Sequential Create （顺序读写文件测试）和 Random Create （随机读写文件测试）。
+
+负载测试工具 benerator
+benerator是建立在现实和有效的大容量测试数据基础上的单元/集成/负载测试和展示安装程序使用的框架。元数据的限制进口的系统和/或配置文件。数据可以导入和导出到文件和系统。
+
+InfraRED
+InfraRED是一个用AspectJ开发的监测J2EE应用程序性能和诊断性能问题的工具。
+
+JVM速度器 vm-j
+VM (velocity Meter)速度器，主要是记录java虚拟机JVM的信息，模仿jdk中的jconsole 的GUI监视工具 ，主要是内存信息，加载内，线程信息，JVM摘要的web工程，显示效果如下：
+
+JVM摘要：
+
+加载内信息;
+
+该项目是基于servlet3开发的，所以需要支持servlet3的web服务器如：tomcat7.0。
+安装是可以直接下载war包放入web容器中，也可以下载源码自己封装到自己项目中，实现后台管理和JVM的监控。
+
+采用的是：java+extjs4.0
+
+JarAnalyzer
+JarAnalyzer是一个用于.jar文件的依赖管理工具.JarAnalyzer能够在一个给定的目录中分析所有jar文件并标识它们之间的依赖关系。输出格式包括XML,一个用于把XML转换成Html的样式文件和一个.grph点格式的文件(可以利用GraphViz来生成一张反应jar文件之间关系的图形)。此外它还包括一个Ant任务可以把JarAnalyzer作为构建脚本的一部份。
+
+性能管理工具 JStress
+JStress是一个模块化和分布式的性能管理工具，用于应用程序服务器的负载测试。用Java开发，在设计上尽可能的和 JUnit 一样简单。
+
+
+
+BaukBench
+BaukBench 是一个支持 HTTP /1.1 的性能测试功能，支持静态和动态内容，并发连接数没限制，有着详细的统计信息，对CPU和内存要求不高
+
+Atlassian Profiling
+一个可在运行期剖析应程序的简单框架.它主要是运用在J2EE Web应用程序.
+
+浏览器性能测试工具 RoboHornet
+Google刚刚发布了RoboHornet，这是一个浏览器的性能测试工具，不仅可以测试Javascript还包括很多其它项目，比如布局性能和localStorage。Google将其在GitHub开源，希望社区和开发者能参与到开发中来。
+
+Google称现在有太多的Javascript测试工具，Google自己也有一个Octane工具，但现在的开发编程语言不仅仅是在将静态网页变成动态应用，更需要多多考虑快速浏览的问题，Google希望RoboHornet能给测试带来一些新鲜血液。
+
+介绍内容来自谷奥
+
+benchbase
+benchbase 是一个项目用来存储和管理 JMeter 或者 FunkLoad 压力测试结果和监控日志。提供详细的报表和图表。
+
+应用性能分析工具 HPC Toolkit
+HPCToolkit 是一组多平台的工具，用于应用程序的性能分析。
+
+FacesTrace
+FacesTrace 是一个用于搜集JSF应用程序执行信息和性能指示，并将这些结果以友好的界面展示给最终用户的开源项目。
+
+程序性能跟踪工具 LTTng
+一个高效的Linux 的Tracing Tools。它能够帮助发现并行环境下的性能问题及bug，甚至跨系统tracing也是可能的。
+
+开源数据库性能测试工具 osdb
+osdb (Opensource Database benchmark) 是一个开源的数据库性能测试工具，目前已经支持 MySQL、PostgreSQL 和 Informix 三个数据库。
+
+Caliper
+
+
+Caliper是Google用来编写、测试和查看 JavaMicrobenchmarks 结果的开源框架。
+
+最简单的 Caliper benchmark 代码如下：
+
+ 
+
+-Hljs groovy 代码
+1
+<code class="hljs scala" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; display: block; overflow-x: auto; padding: 10px; background: rgb(63, 63, 63); color: rgb(220, 220, 220); border-radius: 4px; font-size: 13px; line-height: 1.4; word-wrap: normal; font-family: Menlo, Monaco, Consolas, "Courier New", monospace;">public <span class="hljs-class" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(227, 206, 171);"><span class="hljs-class" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(227, 206, 171);">class</span></span></span><span class="hljs-class" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"> </span><span class="hljs-title" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(239, 239, 143);"><span class="hljs-class" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-title" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(239, 239, 143);">MyBenchmark</span></span></span><span class="hljs-class" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"> </span><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(227, 206, 171);"><span class="hljs-class" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(227, 206, 171);">extends</span></span></span><span class="hljs-class" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"> </span><span class="hljs-title" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(239, 239, 143);"><span class="hljs-class" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-title" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(239, 239, 143);">SimpleBenchmark</span></span></span><span class="hljs-class" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"> </span></span>{
+2
+    public void timeMyOperation(int reps) {
+3
+      <span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(227, 206, 171);"><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(227, 206, 171);">for</span></span> (int i = <span class="hljs-number" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(140, 208, 211);"><span class="hljs-number" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(140, 208, 211);">0</span></span>; i < reps; i++) {
+4
+        <span class="hljs-type" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(239, 239, 143);"><span class="hljs-type" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; color: rgb(239, 239, 143);">MyClass</span></span>.myOperation();
+5
+      }
+6
+    }
+7
+  }</code>
+ 
+
+SlimScrooge
+Slim Scrooge 是一个优化层，用于确保你的 Rails 应用只在需要的时候才从数据库获取内容，最大限度的降低网络流量，减少 SQL 执行以及和 Ruby 数据类型的转换过程。是 Scrooge 的优化版本。
+
+Seam-Perf4j
+Seam-Perf4j 是一个用来将 Java EE 5.0的轻量级 Seam 框架和性能检测库 Perf4j 进行集成的 Java 库。
+
+网络基准测量工具 netio
+NETIO是通过NetBIOS、UDP和TCP协议测量网络净生产量的网络基准(Unix只支持TCP和UDP)使用各种各样的不同的包大小。
+
+数据库性能基准测试 DB-Webbench
+Webbench 是一款数据库性能基准测试程序，模拟博客真实应用对数据库所做操作进行性能测试。不单单能支持对主流关系数据库MySQL, Oracle, Postgres的测试，还能对非关系型数据库如Redis, MongoDB等进行性能测试。其主要特征是对应用的模拟真实性高、方便使用、灵活性高。
+
+开发Webbench的原因是因为现有性能基准测试程序存在以下不足。
+
+DBT2: DBT2为TPC-C的开源实现，其应用特征为更新事务多，读事务少，与博客应用相差巨大，且不具备灵活性，不能只测试某类简单操作，不利于性能优化；
+sysbench: sysbench灵活性高，包含9类操作，每种操作都可单独测试，对性能优化有很大帮助，但测试只采用一张定长表，操作类型也与博客等Web应用相差很大，如主键上的范围查询、根据辅助索引后的排序等操作在Web应用中很少出现，因此sysbench的结果对验证数据库对Web应用的适应性没多大帮助；
+Webbench目前只包含模拟博客应用的Blogbench。在Blogbench中有以下7种操作：
+
+list-blog
+show-blog
+update-access
+update-comment
+show-siblings
+publish-blog
+update-blog
+每种操作的比例都可以单独设置。
+
+负载测试工具 CLIF
+CLIF 是一个模块化的灵活发布的复杂测试平台，可定为多种目标系统，支持Swing、Eclipse GUI 和命令行界面的应用测试。可测试包括内存占用、CPU使用率等指标，提供一个基于Eclipse的向导。
+
+JBossProfiler
+JBossProfiler是一个利用JVMPI系统基于log的剖析器。它使用一个C开发的代理从JVM捕获事件并把它们记录到磁盘中。一个运行在JBoss或其它机器上的Web应用程序可被用来分析这些日记。
+
+性能测试工具 simperf
+Simperf 是一个简单的性能测试工具，它提供了一个多线程测试框架
+
+Example:
+
+1. 在代码里使用Simperf
+Simperf perf = new Simperf(50, 2000, 1000, 
+    new SimperfThreadFactory() {
+        public SimperfThread newThread() {
+            return new SimperfThread();
+        }
+    });
+// 设置结果输出文件，默认 simperf-result.log
+perf.getMonitorThread().setLogFile("simperf.log");
+// 开始性能测试
+perf.start();
+2. 在命令行里使用Simperf
+public class SimperfCommandTest {
+    public static void main(String[] args) {
+        SimperfCommand simCommand = new SimperfCommand(args);
+        Simperf perf = simCommand.create();
+        if (perf == null) {
+            // 参数解析失败时会返回null
+            System.exit(-1);
+        }
+        perf.start(new SimperfThreadFactory() {
+            public SimperfThread newThread() {
+                return new SimperfThread();
+            }
+        });
+    }
+}
+执行命令：
+
+java SimperfCommandTest -t 10 -c 10 -i 1000
+参数说明：
+usage: SimperfCommand options
+ -c,--count       [*] number of each thread requests count
+ -i,--interval    [ ] interval of print messages, default 1000
+ -j               [ ] generate jtl report
+ -l,--log         [ ] log filename
+ -m,--maxtps      [ ] max tps
+ -t,--thread      [*] number of thread count
+3. 在Junit4里使用Simperf
+public class SimperfTestCaseTest extends SimperfTestCase {
+    private Random              rand;
+    @Test
+    @Simperf(thread = 2, count = 5, interval = 1000)
+    public void testXxx() {
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+        }
+        boolean result = rand.nextInt(10) > 1;
+        Assert.assertTrue("随机生成结果", result);
+    }
+}
+Embedded Profiler
+Embedded Profiler 是低开销的 C++分析器，通过编译器（GCC，MinGW的，或MSVC）自动化仪表的功能实现。分析可以自动或手动完成。自动分析生成一个完整的调用树，不需要修改代码。手动分析需要使用EProfiler API，指定要分析的部分代码。在性能分析器，GUI应用程序设计的几点看法舒适的日志分析，可以打开生成的日志。
+
+GCC扩展 StarPU
+StarUP 通常用来帮助高性能的类库和编译环境探索不同体系结构的多核架构。
+
+StarPU is a set of GCC extensions and associated runtime system intended to facilitate the programming of heterogeneous systems - computers with a programmable graphics processing unit, for example. "StarPU typically makes it much easier for high performance libraries or compiler environments to exploit heterogeneous multicore machines possibly equipped with GPGPUs or Cell processors: rather than handling low-level issues, programmers may concentrate on algorithmic concerns."
+
+Parallel Performance Wizard
+Parallel Performance Wizard (PPW) 是为 UPC，MPI，SHMEM 等程序设计的性能分析工具。它通过 GASP 接口提供了一个易于使用的界面和 GAS 编程模型紧密的整合。这个项目是一个针对新兴的性能分析理论和工具的理论的一部分。
+
+JTreeProfiler
+一个基于JVMPI的Java剖析器。它在一个XML文件中收集所有方法被调用的记录并把它们展示TreeMap中。
+
+性能优化工具 Starfish
+Starfish 是一个用于大数据分析的自调优系统，这是一托管 Github 上的项目，但目前访问是 404，不清楚为何。Starfish 相当于是一个性能优化工具，可让 Hadoop 用户和应用达到最佳性能，包含三个组件：
+
+1. Profiler
+2. What-if Engine
+3. Optimizer
+
+Scrooge
+Scrooge (守财奴) 是一个 Rails 的增强，用于降低应用程序访问数据库的次数。
+
+akin520 memsql压力测试工具 workload-simulator
+workload-simulator 是一个用 Python 开发的专用于 MemSQL 的压力测试工具。
+
+clojure-web-server-benchmarks
+clojure-web-server-benchmarks 包含一组对各种 Web 服务器的性能测试脚本，下图是已经做过测试的服务器：
+
+CassJMeter
+CassJMeter 是一个 JMeter 插件用来运行 Cassandra 测试。
+
+
+
+转载链接：https://my.oschina.net/zlp5201/blog/530290
+
+PS：开源中国网站上有很多优秀的开源工具
