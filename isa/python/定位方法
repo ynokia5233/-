@@ -1,0 +1,48 @@
+用python实现UI自动化，Xpath定位方法汇总
+日期：2018-03-12 11:50浏览：138评论：1
+1. 元素id定位，页面上id是唯一的，如果元素存在id，优先使用id定位：
+
+from selenium import webdriver
+driver = webdriver.Chrome()
+driver.find_element_by_id("uid").send_keys(username)
+
+2. 没有id，但存在name，class等值，且在页面上为唯一值时，可以采用name，class等唯一定位一个页面元素：
+
+driver.find_element_by_name("assignee").click()
+driver.find_element_by_class_name("add-issue").click()
+
+3. 当页面上某一个tag唯一或者页面上同一个tag存在较少时可以用tag进行元素定位：
+
+a. 页面上同一个tag仅存在一个：
+
+driver.find_element_by_tag_name("textarea").send_keys(description)
+b. 页面上同一个tag存在多个，可以按照需定位tag所在位置进行定位（0~n）:
+
+driver.find_elements_by_tag_name("button")[1].click()
+
+4. 在自动化过程中使用最多的定位方法---xpath：
+
+a，联合class，title等所在的tag定位页面元素：
+
+driver.find_element_by_xpath("//span[@class='confirm']")
+driver.find_element_by_xpath（"//div[@title='AutoTask']"）
+driver.find_element_by_xpath("//input[@name='dp']")
+b，同一值的class在页面的多处同时出现时，可以联合其上级目录进行联合定位：
+
+driver.find_element_by_xpath("//div[@class='task-operate-value']/div[@class='actions-btn copy']")
+c，同一值的class在页面的多处同时出现时，可以联合其上级及多级目录进行联合定位：
+
+driver.find_element_by_xpath("//div[@class='case-dialog-m']//span[@class='confirm']")
+d，元素的text值唯一确定时，可以采用text值进行元素定位：
+
+driver.find_element_by_xpath("//div[text()='Testcases']")
+e，元素各个属性均与其他元素属性同名时，可以采用在重名属性中按照顺序取值的方法：
+
+
+driver.find_element_by_xpath("//div[@class='task-detail']//div[@class='testcase-status']/div[5]/span[3]")
+f，没有父层目录可以定位，只能通过同级目录唯一定位时，可以先通过同级元素找其共同的父目录，在通过父目录找到该元素
+
+
+存在多个class=icon milestone-del，只有通过title的值唯一确定是哪一个，采用下面的定位方法：..表示向上找一层
+
+//span[text()='迭代1']/../../..//span[@class='icon milestone-del']
