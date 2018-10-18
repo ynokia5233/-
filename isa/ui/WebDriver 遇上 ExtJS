@@ -1,0 +1,152 @@
+UI的自动化测试--WebDriver 遇上 ExtJS
+日期：2013-12-06 17:37浏览：103评论：0
+概述
+在敏捷测试中UI的自动化测试(一般我们也称这层测试为功能测试或验收测试，本文单指Web UI的自动化测试)虽然没有单元测试那么广为提及，但因为其与最终用户最近，所以基于用户场景的UI自动化测试还是有其重要的意义的。使用UI自动化测试 对产品的关键功能路径进行验证及回归，比起传统的QA手工执行Test case可以更快地得到反馈，也让发布变得更有信心。 
+理想状况下， 我们应该将所有可以固化下来的Test case都自动化起来，而让我们的测试人员进行更有挑战性的探索性测试活动。让机器做已知领域的事儿，让人对未知领域进行探索。不过理想归理想，现实是残 酷的。虽然UI层的测试距离交付最近，但是成本也最高。编写和维护UI自动化测试需要付出比其他自动化测试更高昂的成本，这也是大多数团队放弃UI自动化 测试的主要原因。相比较系统的其他部分，UI是一个多变的层，如果UI自动化测试没有构建好，即使界面的一个微小改动，整个测试集可能就天崩地裂。这也就 是为什么我经常对team里其他人说：对于UI自动化测试，可维护性必须牢记心头。每当你写下一行测试代码时，你就必须记住你又给公司添加了一笔成本，而 且这个成本是持续增长的，如果review code的时候发现哪条测试代码维护性不好我会毫不犹豫的删掉。 
+或许有人觉得这有点小题大作， 不就UI测试么，有什么难的。定位元素，然后拿到页面元素的值与期望进行比较不就可以了。难就难在定位元素上。一般我们会使用Selenium WebDriver, Watir, Sahi等工具驱动浏览器，进行元素定位(关于这些工具的详细使用可以参见官方文档，后文主要以Selenium WebDriver为示例)。这些工具在定位元素上基本上是大同小异：通过id, name, css, tagName, xpath等方式定位。这些定位方式，从前到后，一个比一个不靠谱。比如这个xpath，好不容易写出个xpath定位，然后突然有一天前端觉得某个地方 不美观，插入一个小东西，马上测试废掉。看着这种没有改变功能也把功能测试搞垮掉的现象是不是欲哭无泪。我有时天真的在想如果页面上每一个元素都有唯一的 id该多好啊。即使没有唯一的id，有name我也可以接受。不过这一切在遇到ExtJS之后都变了。 
+遭遇ExtJS
+ExtJS 是一个非常霸道的前端框架。使用ExtJS后，页面上几乎所有的一切都被ExtJS接管。尽管互联网提供给用户的系统鲜有使用ExtJS，但是对于后台系 统使用ExtJS确实带来了一些便利。使用ExtJS的基本组件就能组装出一个看起来还不错，功能强大的应用。但是ExtJS非常霸道，被他接管后页面的 生成基本上就是个黑盒子，而为了在各个浏览器的兼容它在各浏览器上生成的html还不一样。更可恨的是默认情况下它给元素提供的id都是动态生成的。 
+在刚选择这个ExtJS的系统作为我们自动化测试的第一个试点时，我还有点暗暗高兴。比起那些提供给普通用户使用的丰富多彩的前端来说，这些后台系统大多中规中矩，使用ExtJS后更是层次分明。而且后台系统UI的变动也不会太过于频繁，我想或许这个系统很容易测试吧。 
+后来我看到同事代码里出现： 
+双击代码全选
+1
+webDriver.findElement(By.id("ext-gen-1306"))
+ 
+我 还在想，我们的前端同学真有“创意”，还用这么随机的名字啊。后来厄运来了，我check out代码在我这里死活通过不了。Selenium报告找不到指定元素。不是吧，我可是使用id进行定位的啊。通过翻阅ExtJS的文档发现，原来类似 ext-gen-xxx这类id都是ExtJS动态生成的。好吧，我使用name进行定位吧，后来发现很多元素居然没有name属性。再来看看ExtJS 生成的html，基本上把通过xpath进行定位的路给堵死了。要了解ExtJS生成的html，可以去ExtJS官方查看一些Demo。 
+曙光
+阅 读ExtJS文档我们发现，ExtJS极其强调它的组件模型。而用ExtJS写的前端代码也呈现出很好的结构。因为之前曾从事过ASP.NET的开发，我 想是不是可以使用ASP.NET类似的方式先编写一些小控件类，这些类对ExtJS的基本组件进行包装。然后利用这些小控件类组装出一个个页面。这样不仅 能把单个元素的定位分散到单个控件类里，而且可以做到极大程度的复用。在传统的UI自动化测试中我们使用Page Object模式来封装一个个页面，但是对于ExtJS来讲页面的粒度还显得过大。如是模仿ASP.NET的控件模型，我创建了Control, Button, TextBox等一系列基本的控件类。而原来Page Object中的Page不再使用WebDriver直接定位元素了，我们通过这些基本控件组装页面。 
+实现
+在这里我用一个简单的用户登录作为例子： 
+Control是我们的基本类型，所有的控件包括页面都从这个类派生。 
+Control只提供了很少几个方法： 
+双击代码全选
+
+publicabstractclassControl {
+    protectedWebDriver webDriver;
+ 
+ 
+    protectedControl parent;
+ 
+ 
+    publicControl(WebDriver webDriver) {
+        this.webDriver = webDriver;
+    }
+ 
+ 
+    publicString getQuery() {
+        returnStringUtils.EMPTY;
+    }
+ 
+ 
+    publicString getId() {
+        JavascriptExecutor executor = (JavascriptExecutor) webDriver;
+        return(String) executor.executeScript("return "+this.getQuery() +".id");
+    }
+}
+ 
+在这里getQuery是一个非常重要的方法，这在后面会介绍。 
+双击代码全选
+
+publicabstractclassCompositeControl extends Control {
+    protectedList <Control> children;
+ 
+ 
+    publicCompositeControl(WebDriver webDriver) {
+        super(webDriver);
+        children =newArrayList<Control> ();
+    }
+ 
+ 
+    publicvoidaddChild(Control control) {
+        this.children.add(control);
+        control.parent =this;
+    }
+}
+ 
+所有的可以包含其他控件的类型都从CompositeControl派生，包括Page。比如下面的Window就是这类元素： 
+双击代码全选
+
+publicclassWindow extends CompositeControl {
+    privateString title;
+ 
+ 
+    publicWindow(String title,WebDriver webDriver) {
+        super(webDriver);
+        this.title = title;
+    }
+ 
+ 
+    @Override
+    publicString getQuery(){
+        returnString.format("Ext.ComponentQuery.query("window[title='%s']")[0]",title);
+    }
+}
+ 
+下面是一个基本控件Button的封装： 
+双击代码全选
+
+publicclassButton extends Control {
+    privateString text;
+ 
+ 
+    publicButton(String text, WebDriver webDriver) {
+        super(webDriver);
+        this.text = text;
+    }
+ 
+ 
+    @Override
+    publicString getQuery() {
+        returnthis.parent.getQuery() + String.format(".query("button[text='%s']")[0]", text);
+    }
+ 
+ 
+    publicvoidclick() {
+        webDriver.findElement(By.id(getId())).click();
+    }
+}
+ 
+ExtJS提供了一个query接口，我们可以利用这个接口传入一些查询表达式查询到页面上的Ext控件，而这里的getQuery就是每个控件的查询表达式吧。因为页面上的ExtJS控件是层次的，所以我们可以利用这种嵌套关系进行精确的定位。 
+好了，来看看我们的登陆页面如何封装吧： 
+双击代码全选
+
+publicclassLoginPage extends ExtJSPage{
+     publicLoginPage(WebDriver webDriver){
+          super(webDriver);
+     }
+ 
+ 
+     privateTextBox txtUserName;
+     privateTextBox txtPassword;
+     privateButton btnLogin;
+      
+     @Override
+     protectedvoidinit(){
+          txtUserName =newTextBox("userName", webDriver);
+          txtPassword =newTextBox("password", webDriver);
+          btnLogin =newButton("登录", webDriver);
+ 
+ 
+          Window win =newWindow("登陆", webDriver);
+          win.addChild(txtUserName);
+          win.addChild(txtPassword);
+          win.addChild(btnLogin);
+ 
+ 
+          this.addChild(win);
+     }
+ 
+ 
+     publicvoidlogin(String userName, String password){
+          txtUserName.setValue(userName);
+          txtPassword.setValue(password);
+          btnLogin.click();
+     }
+}
+ 
+上面的TextBox和ExtJSPage没有提供代码，都很简单可以自行进行封装一下(熟悉ASP.NET的同学可能对这里代码有点眼熟)。 
+按 照这种思路，只要我们封装好所有的基本ExtJS控件，对于所有的页面我们剩下的工作就是组装的工作了。在完成这些之后，我甚至发现使用ExtJS的应用 比那些没有使用ExtJS的应用更容易进行测试。在这里我们只需要完善我们的基本控件封装就可以让我们的测试更佳稳固，而对于编写测试的人来说只需要集中 精力关注Test case。 
+下图是目前我们已经实现的一些控件，每个控件实现起来都非常简单，每个控件只需要关注自己的查询表达式和自己应该提供什么方法。但是所有这些基本控件组装起来威力却很大。 
+<img width="" height="" " src="http://img.ddvip.com/2012/0807/201208071055576022.gif"/> 
+扩展
+后 来我们发现ExtJS应用大多有很丰富的表单，一个表单填写页通常有几十个输入项，即使使用这种组装的方式比传统的使用findElement一个个定位 来得快，但也非常繁琐。我们如是更进一步，建立一些FormModel(这里的form model的意思就是建立数据到表单元素之间的映射)，对于这些表单的填写我们甚至不用编写组装代码了，只需要关注那几个FormModel就ok了。我 们还给这些输入控件加上了验证错误，验证默认值等方法。
