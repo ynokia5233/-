@@ -1,0 +1,72 @@
+RF使用问题-DB2+Java包
+
+》py变量文件  list1 = [12,'2a',u'汉字']
+${list1[0]}
+@{list1}[1]
+
+》Autoitlibrary
+运行文件     Autoitlibrary.run
+操作注册表  reg read/reg write
+操作进程
+模拟鼠标操作
+Windows Control操作
+操作Web中出现的Win32操作对话框、文件保存对话框
+
+》Sikuli
+新型图形化编程技术。它以图像检索技术为基础，提供了一套基于 Jython 的脚本语言以及集成开发环境
+
+。使用者可利用屏幕截图直接引用 GUI 元素进行编程，完成交互操作。
+
+
+》移除时间控件的只读属性
+execute JavaScript document.getElementById('beginData').removeAttribute('ReadOnly')
+
+》import ibm_db报错，无法连接DB2数据库
+【原因分析】导入ibm_db时，缺少依赖的db2 dll和lib文件
+【解决方案】
+	1.安装DB2客户端 (\\10.73.199.60\InstallFilesB\DB2)
+	2.在环境变量中添加变量LIB，“..\IBM\SQLLIB\lib”，在Path中添加“..\IBM\SQLLIB\BIN”
+	3.安装ibm_db
+	4.安装DatabaseLibrary(版本>=0.6.1)
+	5.在RIDE中导入DatabaseLibrary
+	6.在用例中使用关键字Connect To Db2
+
+》href内的JavaScript：可以直接执行（execute JavaScript）
+》匹配含有taskid的url，并获取其后的数值
+	${taskid}  get value from url  &taskid=(.*)  
+
+》导入Pyhon module、Java包
+->创建测试库Module
+--Module的命名与Library
+	如果module名和class名一致，那么library名就会与module名相同。比如：一个名为
+
+MyPythonLibrary 的module（文件名MyPythonLibrary.py）中包含一个名为MyPythonLibrary的class，这
+
+个library就叫MyPythonLibrary
+	如果module名和class名不一致，那就得同时使用module名和class名作为library名。比如： 一
+
+个名为mymodule的module包含一个名为MyLibrary的class，这个library就叫mymodule.MyLibrary
+--然后在RIDE中使用
+
+->创建测试库java class
+--class的命名与Library
+	如果java class没有在任何包中，那么library名就会与class名相同。
+	否则，就得同时使用包路径和class名作为library名。比如：MyJavaLibrary类在
+
+com.huawei.autobots包中，那么这个library就为com.huawei.autobots.MyJavaLibrary
+--实例： com.huawei.autobots.MyJavaLibrary.java
+打成jar包：com.huawei.autobots.MyJavaLibrary.jar
+
+--将jar包放置在【jython安装目录】\Lib\site-packages目录下（便于管理维护）
+--将jar包完整路径添加至环境变量CLASSPATH中
+--将jdk目录\lib\tools.jar添加到环境变量CLASSPATH中
+--在命令行中输入  jython -m robot.libdoc MyJavaLibrary.java 
+
+com.huawei.autobots.MyJavaLibrary.xml
+--将生成的XML文件放置在python目录下
+--RIDE-->Tools-->Import Library Spec XML，选择生成的xml文件 ，再重启RIDE
+--RIDE中导入Library     com.huawei.autobots.MyJavaLibrar
+--导入后，可在Search Keywords中查询到，并使用
+--RIDE运行标签页的Execution Profile选择为“jybot”
+
+
