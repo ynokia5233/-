@@ -1,0 +1,33 @@
+Autobots增强安装
+– Jython & sikuli篇
+一、Jython安装步骤：
+1、配置java运行环境：安装JDK 7 （下载地址：http://www.oracle.com/technetwork/java/javase/downloads/index.html），安装后设置环境变量（以java JDK安装在C:\Program Files\Java\jdk1.7.0_25为例）：
+JAVA_HOME中增加C:\Program Files\Java\jdk1.7.0_25
+CLASSPATH中增加%JAVA_HOME%\lib
+Path中增加%JAVA_HOME%\bin
+2、下载jython最新稳定版 （下载地址：http://www.jython.org/downloads.html ），建议选择2.7.3及以上版本下载，一键安装选择了Jython的2.7beta3版本进行安装。
+3、在命令行模式下，进入下载好的jar包目录运行下面指令：
+java -jar jython-installer-2.7-b3.jar
+默认设置安装后设置环境变量：
+添加变量JYTHON_HOME，设置值为jython安装目录
+Path中增加%JYTHON_HOME%;%JYTHON_HOME%\bin
+4、配置jybot：
+将robotframework安装包\src\bin目录下的 jybot.bat复制到 %JYTHON_HOME%\bin下
+将robotframework安装包\src下的robot文件夹复制到 %JYTHON_HOME%\Lib\site-packages下
+5、验证安装是否成功:在命令行模式下输入：
+jybot --version 如果成功显示版本号则说明Jython环境安装成功
+
+二、sikuli安装步骤：
+1、下载sikuli（下载地址：http://sikuli.org/download.shtml），建议下载"Sikuli-X-1.0rc3(r905)-win32.exe"。
+2、安装Sikuli-X-1.0rc3(r905)-win32.exe后，会生成Sikuli X目录，暂不要使用sikuli，因为这个版本有一些bug。下载Sikuli X r930 （下载地址：http://www.sikuli.org/uploads/1/3/6/8/13689586/sikuli-r930-win32.zip），将压缩包解压后，把Sikuli-IDE目录下的所有文件夹及文件复制到 Sikuli X，这样做的目的是用较稳定的r930版本替换掉r905
+
+三、sikuli与robotframework & Python集成：
+1、创建目录：C:\autobots_sikuli\libs
+2、将robotremoteserver.py 、SikuliRemoteLibrary.py复制到C:\autobots_sikuli\libs
+3、复制Sikuli X目录下的sikuli-script.jar到C:\autobots_sikuli\libs
+4、在环境变量CLASSPATH中添加C:\autobots_sikuli\libs \sikuli-script.jar
+5、命令行模式下，进入目录C:\autobots_sikuli\libs，输入jython.bat SikuliRemoteLibrary.py，如果出现：Robot Framework remote server at 127.0.0.1:8270 starting，说明配置成功，可以使用了
+如果出现：no named module sikuli的错误，请将sikuli-script.jar解压一下就可以了（注意解压选择解压到当前文件夹）
+6、完成以上步骤后，就可以在robotframework中调用sikuli远程库了。
+四、sikuli使用示例
+1、在RIDE中新建一条测试用例，加入Remote和Screenshot库
